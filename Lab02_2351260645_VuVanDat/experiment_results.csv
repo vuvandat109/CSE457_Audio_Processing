@@ -1,0 +1,4 @@
+﻿experiment,endpoint_detection,mfcc_delta,accuracy
+Baseline,True,False,1.0
+E1_no_endpoint,False,False,1.0
+E2_MFCC_delta,True,True,1.0

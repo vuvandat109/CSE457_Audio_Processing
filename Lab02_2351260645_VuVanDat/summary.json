@@ -1,0 +1,30 @@
+{
+  "dataset_files": 25,
+  "classes": 5,
+  "train_files": 15,
+  "test_files": 10,
+  "baseline_accuracy": 1.0,
+  "dtw_same": 15.867425464448475,
+  "dtw_different": 46.628553118024556,
+  "pitch_example_hz": 81.63265306122449,
+  "experiments": [
+    {
+      "experiment": "Baseline",
+      "endpoint_detection": true,
+      "mfcc_delta": false,
+      "accuracy": 1.0
+    },
+    {
+      "experiment": "E1_no_endpoint",
+      "endpoint_detection": false,
+      "mfcc_delta": false,
+      "accuracy": 1.0
+    },
+    {
+      "experiment": "E2_MFCC_delta",
+      "endpoint_detection": true,
+      "mfcc_delta": true,
+      "accuracy": 1.0
+    }
+  ]
+}

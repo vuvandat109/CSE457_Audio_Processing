@@ -1,0 +1,50 @@
+﻿audio,ground_truth,prediction,reference_word,hypothesis_word,error_type,changed_components,reference_valid,hypothesis_valid,reference_validation_reason,hypothesis_validation_reason,ref_initial,hyp_initial,ref_medial,hyp_medial,ref_nucleus,hyp_nucleus,ref_coda,hyp_coda,ref_tone,hyp_tone
+common_voice_vi_24358794.mp3,Mày mà chạy nữa tao thề không chơi với mày nữa đâu,"Mày mà chảy nữa, tao thấy không chơi với mày nữa đâu.",chạy,chảy,tone_error,tone,True,True,valid,valid,ch,ch,,,a,a,y,y,nang,hoi
+common_voice_vi_24358794.mp3,Mày mà chạy nữa tao thề không chơi với mày nữa đâu,"Mày mà chảy nữa, tao thấy không chơi với mày nữa đâu.",thề,thấy,multi_component_error,"nucleus,coda,tone",True,True,valid,valid,th,th,,,ê,â,,y,huyen,sac
+common_voice_vi_24362782.mp3,vì giữa đường không bắt được xe ôm khác,Vì giữa đường không bắt được xe ơn khác?,ôm,ơn,multi_component_error,"nucleus,coda",True,True,valid,valid,,,,,ô,ơ,m,n,ngang,ngang
+common_voice_vi_23936355.mp3,Già làng liền nói,Giả lãng liệu nói,già,giả,tone_error,tone,True,True,valid,valid,gi,gi,,,a,a,,,huyen,hoi
+common_voice_vi_23936355.mp3,Già làng liền nói,Giả lãng liệu nói,làng,lãng,tone_error,tone,True,True,valid,valid,l,l,,,a,a,ng,ng,huyen,nga
+common_voice_vi_23936355.mp3,Già làng liền nói,Giả lãng liệu nói,liền,liệu,multi_component_error,"coda,tone",True,True,valid,valid,l,l,,,iê,iê,n,u,huyen,nang
+common_voice_vi_42788631.mp3,Thu về cho cô không ít tiền bạc mối quan hệ tốt,2V cho cô không ủ tiên bạc mối quan hề tốt,thu,2v,non_vietnamese_token,,True,False,valid,contains_number,th,,,,u,,,,ngang,
+common_voice_vi_42788631.mp3,Thu về cho cô không ít tiền bạc mối quan hệ tốt,2V cho cô không ủ tiên bạc mối quan hề tốt,ít,ủ,multi_component_error,"nucleus,coda,tone",True,True,valid,valid,,,,,i,u,t,,sac,hoi
+common_voice_vi_42788631.mp3,Thu về cho cô không ít tiền bạc mối quan hệ tốt,2V cho cô không ủ tiên bạc mối quan hề tốt,tiền,tiên,tone_error,tone,True,True,valid,valid,t,t,,,iê,iê,n,n,huyen,ngang
+common_voice_vi_42788631.mp3,Thu về cho cô không ít tiền bạc mối quan hệ tốt,2V cho cô không ủ tiên bạc mối quan hề tốt,hệ,hề,tone_error,tone,True,True,valid,valid,h,h,,,ê,ê,,,nang,huyen
+common_voice_vi_30171307.mp3,Và ta tiếp chặng hành trình,và ta biếp chẳng hình chương.,tiếp,biếp,initial_consonant_error,initial,True,True,valid,valid,t,b,,,iê,iê,p,p,sac,sac
+common_voice_vi_30171307.mp3,Và ta tiếp chặng hành trình,và ta biếp chẳng hình chương.,chặng,chẳng,tone_error,tone,True,True,valid,valid,ch,ch,,,ă,ă,ng,ng,nang,hoi
+common_voice_vi_30171307.mp3,Và ta tiếp chặng hành trình,và ta biếp chẳng hình chương.,hành,hình,nucleus_error,nucleus,True,True,valid,valid,h,h,,,a,i,nh,nh,huyen,huyen
+common_voice_vi_30171307.mp3,Và ta tiếp chặng hành trình,và ta biếp chẳng hình chương.,trình,chương,multi_component_error,"initial,nucleus,coda,tone",True,True,valid,valid,tr,ch,,,i,ươ,nh,ng,huyen,ngang
+common_voice_vi_24425726.mp3,Chinh đứng Tìm máy tính cửa gỗ đang được kéo ra,"Chình đứng tìm mại tính, cửa rõ đang được kéo ra.",chinh,chình,tone_error,tone,True,True,valid,valid,ch,ch,,,i,i,nh,nh,ngang,huyen
+common_voice_vi_24425726.mp3,Chinh đứng Tìm máy tính cửa gỗ đang được kéo ra,"Chình đứng tìm mại tính, cửa rõ đang được kéo ra.",máy,mại,multi_component_error,"coda,tone",True,True,valid,valid,m,m,,,a,a,y,i,sac,nang
+common_voice_vi_24425726.mp3,Chinh đứng Tìm máy tính cửa gỗ đang được kéo ra,"Chình đứng tìm mại tính, cửa rõ đang được kéo ra.",gỗ,rõ,multi_component_error,"initial,nucleus",True,True,valid,valid,g,r,,,ô,o,,,nga,nga
+common_voice_vi_24124158.mp3,Và câu thơ đâu còn mãi ngày sau,và câu thơ đâu còn mấy ngày 6,mãi,mấy,multi_component_error,"nucleus,coda,tone",True,True,valid,valid,m,m,,,a,â,i,y,nga,sac
+common_voice_vi_24124158.mp3,Và câu thơ đâu còn mãi ngày sau,và câu thơ đâu còn mấy ngày 6,sau,6,non_vietnamese_token,,True,False,valid,contains_number,s,,,,a,,u,,ngang,
+common_voice_vi_24358781.mp3,Trên bầu trời xanh,Linh Bộ Trời Sang,trên,linh,multi_component_error,"initial,nucleus,coda",True,True,valid,valid,tr,l,,,ê,i,n,nh,ngang,ngang
+common_voice_vi_24358781.mp3,Trên bầu trời xanh,Linh Bộ Trời Sang,bầu,bộ,multi_component_error,"nucleus,coda,tone",True,True,valid,valid,b,b,,,â,ô,u,,huyen,nang
+common_voice_vi_24358781.mp3,Trên bầu trời xanh,Linh Bộ Trời Sang,xanh,sang,multi_component_error,"initial,coda",True,True,valid,valid,x,s,,,a,a,nh,ng,ngang,ngang
+common_voice_vi_24106634.mp3,Khi còn sống con bé yếu kém hơn mọi người,"Khi còn sống, còn bé yêu cem hư mọi người.",con,còn,tone_error,tone,True,True,valid,valid,c,c,,,o,o,n,n,ngang,huyen
+common_voice_vi_24106634.mp3,Khi còn sống con bé yếu kém hơn mọi người,"Khi còn sống, còn bé yêu cem hư mọi người.",yếu,yêu,tone_error,tone,True,True,valid,valid,,,,,yê,yê,u,u,sac,ngang
+common_voice_vi_24106634.mp3,Khi còn sống con bé yếu kém hơn mọi người,"Khi còn sống, còn bé yêu cem hư mọi người.",kém,cem,multi_component_error,"initial,tone",True,True,valid,valid,k,c,,,e,e,m,m,sac,ngang
+common_voice_vi_24106634.mp3,Khi còn sống con bé yếu kém hơn mọi người,"Khi còn sống, còn bé yêu cem hư mọi người.",hơn,hư,multi_component_error,"nucleus,coda",True,True,valid,valid,h,h,,,ơ,ư,n,,ngang,ngang
+common_voice_vi_24304405.mp3,Tôi ngậm cái bánh mì nhai ngấu nghiến,"Tôi ngậm cái bánh mì, nhà ngũ nhín",nhai,nhà,multi_component_error,"coda,tone",True,True,valid,valid,nh,nh,,,a,a,i,,ngang,huyen
+common_voice_vi_24304405.mp3,Tôi ngậm cái bánh mì nhai ngấu nghiến,"Tôi ngậm cái bánh mì, nhà ngũ nhín",ngấu,ngũ,multi_component_error,"nucleus,coda,tone",True,True,valid,valid,ng,ng,,,â,u,u,,sac,nga
+common_voice_vi_24304405.mp3,Tôi ngậm cái bánh mì nhai ngấu nghiến,"Tôi ngậm cái bánh mì, nhà ngũ nhín",nghiến,nhín,multi_component_error,"initial,nucleus",True,True,valid,valid,ngh,nh,,,iê,i,n,n,sac,sac
+common_voice_vi_23933072.mp3,Là anh đây chỉ thăm hỏi đôi lời,Lãn đây chỉ tham hội đôi lời.,là,lãn,multi_component_error,"coda,tone",True,True,valid,valid,l,l,,,a,a,,n,huyen,nga
+common_voice_vi_23933072.mp3,Là anh đây chỉ thăm hỏi đôi lời,Lãn đây chỉ tham hội đôi lời.,thăm,tham,nucleus_error,nucleus,True,True,valid,valid,th,th,,,ă,a,m,m,ngang,ngang
+common_voice_vi_23933072.mp3,Là anh đây chỉ thăm hỏi đôi lời,Lãn đây chỉ tham hội đôi lời.,hỏi,hội,multi_component_error,"nucleus,tone",True,True,valid,valid,h,h,,,o,ô,i,i,hoi,nang
+common_voice_vi_24304490.mp3,Giai đoạn lãnh đạo,Giay đoạn lánh đạo.,giai,giay,final_consonant_error,coda,True,True,valid,valid,gi,gi,,,a,a,i,y,ngang,ngang
+common_voice_vi_24304490.mp3,Giai đoạn lãnh đạo,Giay đoạn lánh đạo.,lãnh,lánh,tone_error,tone,True,True,valid,valid,l,l,,,a,a,nh,nh,nga,sac
+common_voice_vi_24144207.mp3,Cao đến ngực người trưởng thành,Cào đến ngực người chữa thân.,cao,cào,tone_error,tone,True,True,valid,valid,c,c,,,a,a,o,o,ngang,huyen
+common_voice_vi_24144207.mp3,Cao đến ngực người trưởng thành,Cào đến ngực người chữa thân.,trưởng,chữa,multi_component_error,"initial,nucleus,coda,tone",True,True,valid,valid,tr,ch,,,ươ,ưa,ng,,hoi,nga
+common_voice_vi_24144207.mp3,Cao đến ngực người trưởng thành,Cào đến ngực người chữa thân.,thành,thân,multi_component_error,"nucleus,coda,tone",True,True,valid,valid,th,th,,,a,â,nh,n,huyen,ngang
+common_voice_vi_40249427.mp3,Tự nhiên không đâu vào đâu lại sang nói chuyện này,Tự nhiên không đâu vào đâu lại xe nói chuyện này.,sang,xe,multi_component_error,"initial,nucleus,coda",True,True,valid,valid,s,x,,,a,e,ng,,ngang,ngang
+common_voice_vi_24363084.mp3,Nó lại khỏe mạnh trở lại,Nó lại quay mạnh chờ lại.,khỏe,quay,multi_component_error,"initial,medial,nucleus,coda,tone",True,True,valid,valid,kh,qu,o,,e,a,,y,hoi,ngang
+common_voice_vi_24363084.mp3,Nó lại khỏe mạnh trở lại,Nó lại quay mạnh chờ lại.,trở,chờ,multi_component_error,"initial,tone",True,True,valid,valid,tr,ch,,,ơ,ơ,,,hoi,huyen
+common_voice_vi_24362884.mp3,Thì bà ấy cũng không nói lời nào và ra đi như vậy,thì bởi cũng không nói lời nào và ra đi như vậy.,bà,bởi,multi_component_error,"nucleus,coda,tone",True,True,valid,valid,b,b,,,a,ơ,,i,huyen,hoi
+common_voice_vi_23901409.mp3,Không Tao không muốn,Không tạo khùng muống.,tao,tạo,tone_error,tone,True,True,valid,valid,t,t,,,a,a,o,o,ngang,nang
+common_voice_vi_23901409.mp3,Không Tao không muốn,Không tạo khùng muống.,không,khùng,multi_component_error,"nucleus,tone",True,True,valid,valid,kh,kh,,,ô,u,ng,ng,ngang,huyen
+common_voice_vi_23901409.mp3,Không Tao không muốn,Không tạo khùng muống.,muốn,muống,final_consonant_error,coda,True,True,valid,valid,m,m,u,u,ô,ô,n,ng,sac,sac
+common_voice_vi_23380408.mp3,Thấy ánh mặt trời,Thấy anh mặc trời.,ánh,anh,tone_error,tone,True,True,valid,valid,,,,,a,a,nh,nh,sac,ngang
+common_voice_vi_23380408.mp3,Thấy ánh mặt trời,Thấy anh mặc trời.,mặt,mặc,final_consonant_error,coda,True,True,valid,valid,m,m,,,ă,ă,t,c,nang,nang
+common_voice_vi_42788758.mp3,Cây cỏ tỉnh táo,Cây cò tình tạo,cỏ,cò,tone_error,tone,True,True,valid,valid,c,c,,,o,o,,,hoi,huyen
+common_voice_vi_42788758.mp3,Cây cỏ tỉnh táo,Cây cò tình tạo,tỉnh,tình,tone_error,tone,True,True,valid,valid,t,t,,,i,i,nh,nh,hoi,huyen
+common_voice_vi_42788758.mp3,Cây cỏ tỉnh táo,Cây cò tình tạo,táo,tạo,tone_error,tone,True,True,valid,valid,t,t,,,a,a,o,o,sac,nang

@@ -1,0 +1,83 @@
+{
+    "tong_quan": {
+        "so_luong_audio": 20,
+        "WER_trung_binh": 0.4118,
+        "CER_trung_binh": 0.1699
+    },
+    "danh_gia_word": {
+        "nhan_dung": 98,
+        "thay_the": 49,
+        "bo_sot": 3,
+        "them": 0
+    },
+    "phan_tich_loi_tieng_viet": {
+        "multi_component_error": 25,
+        "tone_error": 16,
+        "final_consonant_error": 3,
+        "non_vietnamese_token": 2,
+        "nucleus_error": 2,
+        "initial_consonant_error": 1
+    },
+    "top_loi_thuong_gap": [
+        {
+            "tu_dung": "chạy",
+            "asr_nhan_dang": "chảy",
+            "loai_loi": "tone_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "thề",
+            "asr_nhan_dang": "thấy",
+            "loai_loi": "multi_component_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "ôm",
+            "asr_nhan_dang": "ơn",
+            "loai_loi": "multi_component_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "già",
+            "asr_nhan_dang": "giả",
+            "loai_loi": "tone_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "làng",
+            "asr_nhan_dang": "lãng",
+            "loai_loi": "tone_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "liền",
+            "asr_nhan_dang": "liệu",
+            "loai_loi": "multi_component_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "thu",
+            "asr_nhan_dang": "2v",
+            "loai_loi": "non_vietnamese_token",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "ít",
+            "asr_nhan_dang": "ủ",
+            "loai_loi": "multi_component_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "tiền",
+            "asr_nhan_dang": "tiên",
+            "loai_loi": "tone_error",
+            "so_lan": 1
+        },
+        {
+            "tu_dung": "hệ",
+            "asr_nhan_dang": "hề",
+            "loai_loi": "tone_error",
+            "so_lan": 1
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+{
+  "total_audio": 20,
+  "total_error": 58,
+  "error_distribution": {
+    "tone_error": 17,
+    "nucleus_error": 17,
+    "final_consonant_error": 10,
+    "missing_word": 2,
+    "initial_consonant_error": 11,
+    "merge_word": 1
+  },
+  "phoneme_detail": {
+    "initial": {
+      "type": {
+        "substitution": 14
+      },
+      "confusion": {
+        "v -> ": 1,
+        "t -> b": 1,
+        "tr -> ch": 3,
+        "g -> r": 1,
+        "s -> ": 1,
+        "tr -> l": 1,
+        "x -> s": 1,
+        "k -> c": 1,
+        "ngh -> nh": 1,
+        "s -> x": 1,
+        "kh -> qu": 1,
+        " -> b": 1
+      }
+    },
+    "nucleus": {
+      "confusion": {
+        "ê -> ây": 1,
+        "ô -> ơ": 1,
+        "iê -> iêu": 1,
+        "ê -> 2v": 1,
+        "i -> u": 1,
+        "a -> i": 1,
+        "i -> ươ": 1,
+        "ay -> ai": 1,
+        "ô -> o": 1,
+        "ai -> ây": 1,
+        "au -> 6": 1,
+        "ê -> i": 1,
+        "âu -> ô": 1,
+        "ơ -> ư": 1,
+        "ai -> a": 1,
+        "âu -> u": 1,
+        "iê -> i": 1,
+        "ă -> a": 1,
+        "oi -> ôi": 1,
+        "ai -> ay": 1,
+        "ươ -> ưa": 1,
+        "a -> â": 1,
+        "a -> e": 1,
+        "oe -> ay": 1,
+        "ây -> ơi": 1,
+        "ô -> u": 1
+      }
+    },
+    "final": {
+      "type": {
+        "substitution": 12
+      },
+      "confusion": {
+        "m -> n": 1,
+        "n -> ": 2,
+        "t -> ": 1,
+        "nh -> ng": 2,
+        "n -> nh": 1,
+        "ng -> ": 2,
+        "nh -> n": 1,
+        "n -> ng": 1,
+        "t -> c": 1
+      }
+    },
+    "tone": {
+      "confusion": {
+        "nặng -> hỏi": 2,
+        "huyền -> sắc": 1,
+        "huyền -> hỏi": 1,
+        "huyền -> ngã": 1,
+        "huyền -> nặng": 2,
+        "huyền -> ngang": 4,
+        "sắc -> hỏi": 2,
+        "nặng -> huyền": 1,
+        "ngang -> huyền": 5,
+        "sắc -> nặng": 2,
+        "ngã -> sắc": 2,
+        "sắc -> ngang": 3,
+        "sắc -> ngã": 1,
+        "hỏi -> nặng": 1,
+        "hỏi -> ngã": 1,
+        "hỏi -> ngang": 1,
+        "hỏi -> huyền": 3,
+        "ngang -> nặng": 1
+      }
+    }
+  }
+}
