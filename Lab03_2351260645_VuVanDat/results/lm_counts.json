@@ -1,0 +1,34 @@
+{
+  "unigram": {
+    "mo": 14,
+    "len": 7,
+    "dung": 18,
+    "xuong": 7,
+    "dong": 15
+  },
+  "context": {
+    "<s>": 24,
+    "mo": 12,
+    "len": 7,
+    "dung": 8,
+    "xuong": 7,
+    "dong": 3
+  },
+  "bigram": {
+    "<s>|mo": 10,
+    "mo|len": 3,
+    "len|dung": 7,
+    "dung|xuong": 2,
+    "xuong|dung": 7,
+    "dung|dong": 5,
+    "mo|dong": 8,
+    "<s>|len": 4,
+    "<s>|xuong": 4,
+    "<s>|dong": 2,
+    "dong|mo": 3,
+    "mo|xuong": 1,
+    "<s>|dung": 4,
+    "dung|mo": 1
+  },
+  "k": 0.5
+}

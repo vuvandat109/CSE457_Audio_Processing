@@ -1,0 +1,25 @@
+# DEMO synthetic command sequences; not supplied by instructor.
+mo len dung xuong dung dong
+mo len dung dong
+mo dong
+mo dong
+mo dong
+mo dong
+mo dong
+mo dong
+mo dong
+mo dong
+len dung xuong dung
+len dung
+len dung
+len dung
+xuong dung
+xuong dung
+xuong dung
+xuong dung
+dong mo len dung
+ dong mo xuong dung
+ dung dong mo
+ dung dong
+ dung dong
+ dung mo

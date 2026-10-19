@@ -1,0 +1,16 @@
+[
+  {
+    "file": "dataset/test/mo/mo_01.wav",
+    "forward_loglik": -785.6818452788926,
+    "viterbi_logprob": -785.7033505016676,
+    "difference": 0.021505222774976573,
+    "match_library": true
+  },
+  {
+    "file": "dataset/test/xuong/xuong_01.wav",
+    "forward_loglik": -1281.0680718461476,
+    "viterbi_logprob": -1281.5194959219953,
+    "difference": 0.4514240758476262,
+    "match_library": true
+  }
+]

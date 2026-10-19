@@ -1,0 +1,12 @@
+﻿condition,file,true,hmm,dtw,hmm_correct,dtw_correct
+noise15,dataset/test_noise15/dong/dong_01.wav,dong,xuong,dong,False,True
+noise15,dataset/test_noise15/dong/dong_02.wav,dong,xuong,dong,False,True
+noise15,dataset/test_noise15/dong/dong_03.wav,dong,xuong,dong,False,True
+noise15,dataset/test_noise15/dong/dong_04.wav,dong,xuong,dong,False,True
+noise15,dataset/test_noise15/len/len_01.wav,len,xuong,dong,False,False
+noise15,dataset/test_noise15/len/len_02.wav,len,xuong,dong,False,False
+noise15,dataset/test_noise15/len/len_04.wav,len,xuong,dong,False,False
+noise15,dataset/test_noise15/dung/dung_01.wav,dung,xuong,dung,False,True
+noise15,dataset/test_noise15/dung/dung_02.wav,dung,xuong,dung,False,True
+noise15,dataset/test_noise15/dung/dung_03.wav,dung,xuong,dung,False,True
+noise15,dataset/test_noise15/dung/dung_04.wav,dung,xuong,dung,False,True

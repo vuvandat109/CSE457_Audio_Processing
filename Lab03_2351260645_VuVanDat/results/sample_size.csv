@@ -1,0 +1,4 @@
+﻿train_per_class,hmm_accuracy,dtw_accuracy
+2,1.0,1.0
+6,1.0,1.0
+12,1.0,1.0

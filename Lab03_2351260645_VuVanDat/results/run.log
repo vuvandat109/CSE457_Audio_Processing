@@ -1,0 +1,39 @@
+A: audio audited; features finite, T x 39
+Model is not converging.  Current: -4804.528057010419 is not greater than -4804.527760248978. Delta is -0.00029676144094992196
+mo startprob= [1.0, 0.0, 0.0, 0.0, 0.0] transmat=
+ [[0.88  0.12  0.    0.    0.   ]
+ [0.    0.803 0.197 0.    0.   ]
+ [0.    0.    0.882 0.118 0.   ]
+ [0.    0.    0.    0.925 0.075]
+ [0.    0.    0.    0.    1.   ]]
+dong startprob= [1.0, 0.0, 0.0, 0.0, 0.0] transmat=
+ [[0.815 0.185 0.    0.    0.   ]
+ [0.    0.755 0.245 0.    0.   ]
+ [0.    0.    0.721 0.279 0.   ]
+ [0.    0.    0.    0.86  0.14 ]
+ [0.    0.    0.    0.    1.   ]]
+len startprob= [1.0, 0.0, 0.0, 0.0, 0.0] transmat=
+ [[0.871 0.129 0.    0.    0.   ]
+ [0.    0.769 0.231 0.    0.   ]
+ [0.    0.    0.876 0.124 0.   ]
+ [0.    0.    0.    0.875 0.125]
+ [0.    0.    0.    0.    1.   ]]
+xuong startprob= [1.0, 0.0, 0.0, 0.0, 0.0] transmat=
+ [[0.883 0.117 0.    0.    0.   ]
+ [0.    0.876 0.124 0.    0.   ]
+ [0.    0.    0.862 0.138 0.   ]
+ [0.    0.    0.    0.909 0.091]
+ [0.    0.    0.    0.    1.   ]]
+dung startprob= [1.0, 0.0, 0.0, 0.0, 0.0] transmat=
+ [[0.855 0.145 0.    0.    0.   ]
+ [0.    0.852 0.148 0.    0.   ]
+ [0.    0.    0.857 0.143 0.   ]
+ [0.    0.    0.    0.857 0.143]
+ [0.    0.    0.    0.    1.   ]]
+B-D: baseline trained and evaluated
+Model is not converging.  Current: -18226.294914807127 is not greater than -18226.29489834568. Delta is -1.6461446648463607e-05
+Model is not converging.  Current: -13701.316663977672 is not greater than -13701.316538803201. Delta is -0.0001251744706678437
+Model is not converging.  Current: -3685.1485196709186 is not greater than -3685.144242850442. Delta is -0.004276820476661669
+Model is not converging.  Current: 11065.243066365818 is not greater than 11065.243088953714. Delta is -2.2587895728065632e-05
+Model is not converging.  Current: 7539.716431354444 is not greater than 7539.716431417981. Delta is -6.353729986585677e-08
+Model is not converging.  Current: 11062.659022621196 is not greater than 11062.659711766546. Delta is -0.0006891453504067613

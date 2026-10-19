@@ -1,0 +1,639 @@
+{
+  "source": "All audio SYNTHETIC eSpeak NG; NOT human recordings.",
+  "counts": {
+    "train": 60,
+    "validation": 20,
+    "test": 20,
+    "noise_test_derivatives": 20,
+    "unknown_val": 4,
+    "unknown_test": 4,
+    "diagnostic_probe": 1
+  },
+  "train_accuracy": 1.0,
+  "val_accuracy": 1.0,
+  "test_accuracy": 1.0,
+  "noise_accuracy": 0.2,
+  "baseline": "fixed 5-state 39D diag",
+  "selected_states_validation_only": "3 states",
+  "dtw_accuracy": 1.0,
+  "dtw_noise_accuracy": 0.6,
+  "timing": [
+    {
+      "model": "HMM39",
+      "accuracy": 1.0,
+      "noise_accuracy": 0.2,
+      "train_per_class": 12,
+      "fit_or_template_s": 0.31476304000011623,
+      "test_score_ms": 1.1984567000013158
+    },
+    {
+      "model": "DTW13",
+      "accuracy": 1.0,
+      "noise_accuracy": 0.6,
+      "train_per_class": 12,
+      "fit_or_template_s": 0.003026535000117292,
+      "test_score_ms": 3.613311250001061
+    }
+  ],
+  "experiments": [
+    {
+      "experiment": "E1",
+      "config": "3 states",
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "train_s": 0.4662641219999841,
+      "statuses": "tolerance;tolerance;tolerance;decrease;decrease"
+    },
+    {
+      "experiment": "E1",
+      "config": "5 states",
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "train_s": 0.31476304000011623,
+      "statuses": "tolerance;decrease;tolerance;tolerance;tolerance"
+    },
+    {
+      "experiment": "E1",
+      "config": "7 states",
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "train_s": 0.8258517910001046,
+      "statuses": "tolerance;tolerance;tolerance;tolerance;decrease"
+    },
+    {
+      "experiment": "E2",
+      "config": "MFCC13",
+      "val_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "train_s": 0.7482433499999388
+    },
+    {
+      "experiment": "E2",
+      "config": "MFCC39",
+      "val_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "train_s": 0.31476304000011623
+    },
+    {
+      "experiment": "E3",
+      "config": "full regularized",
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "train_s": 1.0287523500001043,
+      "mean_train_true_loglik_frame": 24.050438564261515,
+      "mean_test_true_loglik_frame": -8.63647031416027
+    },
+    {
+      "experiment": "E3",
+      "config": "diag",
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "mean_train_true_loglik_frame": -21.846849570531038,
+      "mean_test_true_loglik_frame": -23.155050054564512
+    }
+  ],
+  "scarcity": [
+    {
+      "train_per_class": 2,
+      "hmm_accuracy": 1.0,
+      "dtw_accuracy": 1.0
+    },
+    {
+      "train_per_class": 6,
+      "hmm_accuracy": 1.0,
+      "dtw_accuracy": 1.0
+    },
+    {
+      "train_per_class": 12,
+      "hmm_accuracy": 1.0,
+      "dtw_accuracy": 1.0
+    }
+  ],
+  "disagreements": [
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dong/dong_01.wav",
+      "true": "dong",
+      "hmm": "xuong",
+      "dtw": "dong",
+      "hmm_correct": false,
+      "dtw_correct": true
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dong/dong_02.wav",
+      "true": "dong",
+      "hmm": "xuong",
+      "dtw": "dong",
+      "hmm_correct": false,
+      "dtw_correct": true
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dong/dong_03.wav",
+      "true": "dong",
+      "hmm": "xuong",
+      "dtw": "dong",
+      "hmm_correct": false,
+      "dtw_correct": true
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dong/dong_04.wav",
+      "true": "dong",
+      "hmm": "xuong",
+      "dtw": "dong",
+      "hmm_correct": false,
+      "dtw_correct": true
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/len/len_01.wav",
+      "true": "len",
+      "hmm": "xuong",
+      "dtw": "dong",
+      "hmm_correct": false,
+      "dtw_correct": false
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/len/len_02.wav",
+      "true": "len",
+      "hmm": "xuong",
+      "dtw": "dong",
+      "hmm_correct": false,
+      "dtw_correct": false
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/len/len_04.wav",
+      "true": "len",
+      "hmm": "xuong",
+      "dtw": "dong",
+      "hmm_correct": false,
+      "dtw_correct": false
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dung/dung_01.wav",
+      "true": "dung",
+      "hmm": "xuong",
+      "dtw": "dung",
+      "hmm_correct": false,
+      "dtw_correct": true
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dung/dung_02.wav",
+      "true": "dung",
+      "hmm": "xuong",
+      "dtw": "dung",
+      "hmm_correct": false,
+      "dtw_correct": true
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dung/dung_03.wav",
+      "true": "dung",
+      "hmm": "xuong",
+      "dtw": "dung",
+      "hmm_correct": false,
+      "dtw_correct": true
+    },
+    {
+      "condition": "noise15",
+      "file": "dataset/test_noise15/dung/dung_04.wav",
+      "true": "dung",
+      "hmm": "xuong",
+      "dtw": "dung",
+      "hmm_correct": false,
+      "dtw_correct": true
+    }
+  ],
+  "lm_candidate": {
+    "file": "dataset/probe/ambiguous.wav",
+    "true": "dung",
+    "pred": "xuong",
+    "frames": 39,
+    "margin_frame": 0.08340833505758966,
+    "mo": -6259.866654653572,
+    "dong": -6148.036640307486,
+    "len": -5529.48736417918,
+    "xuong": -3407.8365971831117,
+    "dung": -3411.0895222503577
+  },
+  "lm_changes_counts": {
+    "harmed": 77,
+    "still_wrong": 4,
+    "corrected": 14
+  },
+  "reject": {
+    "threshold": -72.25345882215706,
+    "validation_balanced_accuracy": 1.0,
+    "known_test_false_reject": 0.0,
+    "unknown_test_reject_rate": 1.0,
+    "unknown_val": [
+      {
+        "file": "dataset/unknown_val/unknown/unknown_01.wav",
+        "max_score": -105.16863206797586
+      },
+      {
+        "file": "dataset/unknown_val/unknown/unknown_02.wav",
+        "max_score": -105.38606822869349
+      },
+      {
+        "file": "dataset/unknown_val/unknown/unknown_03.wav",
+        "max_score": -104.81302721110642
+      },
+      {
+        "file": "dataset/unknown_val/unknown/unknown_04.wav",
+        "max_score": -105.17780189868579
+      }
+    ],
+    "unknown_test": [
+      {
+        "file": "dataset/unknown_test/unknown/unknown_01.wav",
+        "max_score": -109.26675866123394
+      },
+      {
+        "file": "dataset/unknown_test/unknown/unknown_02.wav",
+        "max_score": -113.59223292599984
+      },
+      {
+        "file": "dataset/unknown_test/unknown/unknown_03.wav",
+        "max_score": -112.15505143111498
+      },
+      {
+        "file": "dataset/unknown_test/unknown/unknown_04.wav",
+        "max_score": -111.1824935740253
+      }
+    ],
+    "limitation": "Only 4 validation OOV and 4 test OOV samples; synthetic phrases; not a calibrated real-world unknown detector."
+  },
+  "forward_checks": [
+    {
+      "file": "dataset/test/mo/mo_01.wav",
+      "forward_loglik": -785.6818452788926,
+      "viterbi_logprob": -785.7033505016676,
+      "difference": 0.021505222774976573,
+      "match_library": true
+    },
+    {
+      "file": "dataset/test/xuong/xuong_01.wav",
+      "forward_loglik": -1281.0680718461476,
+      "viterbi_logprob": -1281.5194959219953,
+      "difference": 0.4514240758476262,
+      "match_library": true
+    }
+  ],
+  "training_statuses": [
+    {
+      "label": "mo",
+      "iterations": 27,
+      "status": "tolerance",
+      "last_delta": 0.00031039851819514297,
+      "history": [
+        -11971.754241375224,
+        -10386.606221071439,
+        -10207.133938319917,
+        -10099.810804691608,
+        -9949.300614638776,
+        -9929.23229850234,
+        -9927.70300913243,
+        -9926.417426919917,
+        -9924.761179442225,
+        -9923.110751243054,
+        -9916.020966015238,
+        -9891.67739922163,
+        -9811.819175065875,
+        -9798.968782964155,
+        -9798.760510595972,
+        -9798.669465201063,
+        -9798.476967138206,
+        -9796.812497349987,
+        -9790.60983020747,
+        -9788.402702258922,
+        -9787.83044374888,
+        -9786.955727254848,
+        -9779.38157072514,
+        -9760.922702731183,
+        -9760.83633452236,
+        -9760.831347827138,
+        -9760.83103742862
+      ],
+      "startprob": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transmat": [
+        [
+          0.8800000000000013,
+          0.11999999999999864,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.8031822687795268,
+          0.19681773122047308,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.8822963940884042,
+          0.11770360591159577,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9250369597217232,
+          0.07496304027827683
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "warnings": []
+    },
+    {
+      "label": "dong",
+      "iterations": 6,
+      "status": "decrease",
+      "last_delta": -0.00029676144094992196,
+      "history": [
+        -6363.239775210604,
+        -5131.169368605865,
+        -4841.369417588091,
+        -4804.530534434522,
+        -4804.527760248978,
+        -4804.528057010419
+      ],
+      "startprob": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transmat": [
+        [
+          0.8153771430745463,
+          0.18462285692545377,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7551151884787288,
+          0.2448848115212712,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.720810038306342,
+          0.27918996169365795,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.8604951454418509,
+          0.13950485455814912
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "warnings": []
+    },
+    {
+      "label": "len",
+      "iterations": 22,
+      "status": "tolerance",
+      "last_delta": 0.0009005418487504357,
+      "history": [
+        -12351.795323701152,
+        -11756.079823108892,
+        -11561.670287952413,
+        -11363.231923061636,
+        -11291.843018875497,
+        -11288.118976109212,
+        -11287.985069300274,
+        -11287.913745516911,
+        -11287.82433729215,
+        -11287.672394762978,
+        -11287.450685448639,
+        -11287.287507864949,
+        -11287.226647331052,
+        -11287.198832632366,
+        -11287.176155696056,
+        -11287.146941800449,
+        -11287.093205994344,
+        -11286.968926983629,
+        -11286.714698079077,
+        -11286.496222973266,
+        -11286.459606205832,
+        -11286.458705663983
+      ],
+      "startprob": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transmat": [
+        [
+          0.8709696117698075,
+          0.1290303882301925,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7693142317060935,
+          0.23068576829390647,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.876123453500825,
+          0.12387654649917502,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.8751420277159975,
+          0.12485797228400258
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "warnings": []
+    },
+    {
+      "label": "xuong",
+      "iterations": 7,
+      "status": "tolerance",
+      "last_delta": 0.0008014532941160724,
+      "history": [
+        -13773.167875817819,
+        -12703.000954625018,
+        -12473.186344639007,
+        -12398.086983107069,
+        -12385.468642184002,
+        -12385.463973684022,
+        -12385.463172230728
+      ],
+      "startprob": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transmat": [
+        [
+          0.8834940033031762,
+          0.11650599669682393,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.8759820065616474,
+          0.12401799343835268,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.8624226811685207,
+          0.13757731883147933,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9091027376502333,
+          0.09089726234976668
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "warnings": []
+    },
+    {
+      "label": "dung",
+      "iterations": 10,
+      "status": "tolerance",
+      "last_delta": 2.4004641090868972e-05,
+      "history": [
+        -9035.485611625598,
+        -7892.48242678111,
+        -7782.702526792487,
+        -7778.768954620384,
+        -7762.675304350193,
+        -7736.283548589129,
+        -7705.217653771622,
+        -7688.803855426034,
+        -7680.271342552063,
+        -7680.271318547422
+      ],
+      "startprob": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transmat": [
+        [
+          0.8554192577480983,
+          0.1445807422519017,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.8518544020271599,
+          0.14814559797284022,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.8571428575967811,
+          0.14285714240321895,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.8571428568454182,
+          0.1428571431545818
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "warnings": []
+    }
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "librosa": "1.0.0",
+    "hmmlearn": "0.3.3"
+  }
+}

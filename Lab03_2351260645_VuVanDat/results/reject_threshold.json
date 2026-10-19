@@ -1,0 +1,43 @@
+{
+  "threshold": -72.25345882215706,
+  "validation_balanced_accuracy": 1.0,
+  "known_test_false_reject": 0.0,
+  "unknown_test_reject_rate": 1.0,
+  "unknown_val": [
+    {
+      "file": "dataset/unknown_val/unknown/unknown_01.wav",
+      "max_score": -105.16863206797586
+    },
+    {
+      "file": "dataset/unknown_val/unknown/unknown_02.wav",
+      "max_score": -105.38606822869349
+    },
+    {
+      "file": "dataset/unknown_val/unknown/unknown_03.wav",
+      "max_score": -104.81302721110642
+    },
+    {
+      "file": "dataset/unknown_val/unknown/unknown_04.wav",
+      "max_score": -105.17780189868579
+    }
+  ],
+  "unknown_test": [
+    {
+      "file": "dataset/unknown_test/unknown/unknown_01.wav",
+      "max_score": -109.26675866123394
+    },
+    {
+      "file": "dataset/unknown_test/unknown/unknown_02.wav",
+      "max_score": -113.59223292599984
+    },
+    {
+      "file": "dataset/unknown_test/unknown/unknown_03.wav",
+      "max_score": -112.15505143111498
+    },
+    {
+      "file": "dataset/unknown_test/unknown/unknown_04.wav",
+      "max_score": -111.1824935740253
+    }
+  ],
+  "limitation": "Only 4 validation OOV and 4 test OOV samples; synthetic phrases; not a calibrated real-world unknown detector."
+}

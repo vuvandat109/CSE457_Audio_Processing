@@ -1,0 +1,15 @@
+{
+  "parent": "dataset/val/dung/dung_01.wav",
+  "snr_db": 36.0,
+  "purpose": "Validation-derived diagnostic selected for small acoustic margin; excluded from accuracy and tuning.",
+  "file": "dataset/probe/ambiguous.wav",
+  "true": "dung",
+  "pred": "xuong",
+  "frames": 39,
+  "margin_frame": 0.08340833505758966,
+  "mo": -6259.866654653572,
+  "dong": -6148.036640307486,
+  "len": -5529.48736417918,
+  "xuong": -3407.8365971831117,
+  "dung": -3411.0895222503577
+}

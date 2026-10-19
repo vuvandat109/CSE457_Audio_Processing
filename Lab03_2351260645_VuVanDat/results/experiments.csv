@@ -1,0 +1,8 @@
+﻿experiment,config,train_accuracy,val_accuracy,test_accuracy,train_s,statuses,mean_train_true_loglik_frame,mean_test_true_loglik_frame
+E1,3 states,1.0,1.0,1.0,0.4662641219999841,tolerance;tolerance;tolerance;decrease;decrease,,
+E1,5 states,1.0,1.0,1.0,0.31476304000011623,tolerance;decrease;tolerance;tolerance;tolerance,,
+E1,7 states,1.0,1.0,1.0,0.8258517910001046,tolerance;tolerance;tolerance;tolerance;decrease,,
+E2,MFCC13,,1.0,1.0,0.7482433499999388,,,
+E2,MFCC39,,1.0,1.0,0.31476304000011623,,,
+E3,full regularized,1.0,1.0,1.0,1.0287523500001043,,24.050438564261515,-8.63647031416027
+E3,diag,1.0,1.0,1.0,,,-21.846849570531038,-23.155050054564512

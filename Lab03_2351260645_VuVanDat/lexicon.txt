@@ -1,0 +1,7 @@
+# DEMO ONLY: custom symbolic inventory, NOT instructor-supplied pronunciation lexicon.
+# Tone tokens are illustrative; no phone HMM is trained in this whole-word lab.
+mo M OW T_HOI
+dong DD OO NG T_SAC
+len L EE N T_NGANG
+xuong X UO NG T_SAC
+dung DD UW NG T_HUYEN

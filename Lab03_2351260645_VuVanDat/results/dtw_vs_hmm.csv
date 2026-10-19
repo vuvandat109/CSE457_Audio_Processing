@@ -1,0 +1,3 @@
+﻿model,accuracy,noise_accuracy,train_per_class,fit_or_template_s,test_score_ms
+HMM39,1.0,0.2,12,0.31476304000011623,1.1984567000013158
+DTW13,1.0,0.6,12,0.003026535000117292,3.613311250001061
