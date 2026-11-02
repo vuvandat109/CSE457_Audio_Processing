@@ -1,0 +1,27 @@
+﻿voice,sentence_id,backend,text,path,clip_id
+male,1,crossfade_00ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/male_s1_xfade_00ms.wav,C01
+male,1,neural,Mời khách hàng số 23 đến quầy 5.,audio_output/male_s1_neural_tts.wav,C02
+male,2,neural,Mời khách hàng số 108 đến quầy 2.,audio_output/male_s2_neural_tts.wav,C03
+male,3,hmm,Mời khách hàng số 479 đến quầy 6.,audio_output/male_s3_hmm_tts.wav,C04
+female,2,neural,Mời khách hàng số 108 đến quầy 2.,audio_output/female_s2_neural_tts.wav,C05
+female,1,crossfade_15ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/female_s1_xfade_15ms.wav,C06
+male,2,hmm,Mời khách hàng số 108 đến quầy 2.,audio_output/male_s2_hmm_tts.wav,C07
+male,3,neural,Mời khách hàng số 479 đến quầy 6.,audio_output/male_s3_neural_tts.wav,C08
+female,1,neural,Mời khách hàng số 23 đến quầy 5.,audio_output/female_s1_neural_tts.wav,C09
+male,3,concat,Mời khách hàng số 479 đến quầy 6.,audio_output/male_s3_best_concat.wav,C10
+female,1,concat,Mời khách hàng số 23 đến quầy 5.,audio_output/female_s1_best_concat.wav,C11
+female,1,crossfade_05ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/female_s1_xfade_05ms.wav,C12
+female,3,neural,Mời khách hàng số 479 đến quầy 6.,audio_output/female_s3_neural_tts.wav,C13
+male,1,crossfade_15ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/male_s1_xfade_15ms.wav,C14
+male,1,crossfade_05ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/male_s1_xfade_05ms.wav,C15
+female,1,crossfade_30ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/female_s1_xfade_30ms.wav,C16
+male,2,concat,Mời khách hàng số 108 đến quầy 2.,audio_output/male_s2_best_concat.wav,C17
+female,1,hmm,Mời khách hàng số 23 đến quầy 5.,audio_output/female_s1_hmm_tts.wav,C18
+male,1,concat,Mời khách hàng số 23 đến quầy 5.,audio_output/male_s1_best_concat.wav,C19
+male,1,crossfade_30ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/male_s1_xfade_30ms.wav,C20
+female,3,concat,Mời khách hàng số 479 đến quầy 6.,audio_output/female_s3_best_concat.wav,C21
+female,2,concat,Mời khách hàng số 108 đến quầy 2.,audio_output/female_s2_best_concat.wav,C22
+male,1,hmm,Mời khách hàng số 23 đến quầy 5.,audio_output/male_s1_hmm_tts.wav,C23
+female,2,hmm,Mời khách hàng số 108 đến quầy 2.,audio_output/female_s2_hmm_tts.wav,C24
+female,1,crossfade_00ms,Mời khách hàng số 23 đến quầy 5.,audio_output/experiments/female_s1_xfade_00ms.wav,C25
+female,3,hmm,Mời khách hàng số 479 đến quầy 6.,audio_output/female_s3_hmm_tts.wav,C26

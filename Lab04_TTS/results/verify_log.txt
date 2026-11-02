@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "checks": [
+    "64 units; 16 labels x 2 candidates x 2 voices",
+    "126 WAVs: mono/16k/PCM16, finite, nonempty, no full-scale clipping",
+    "Normalization preserves leading zeros and rejects unsupported words",
+    "DP matches exhaustive optimum for both voices; all overlap lengths correct",
+    "All three sentences x two voices x four outputs; HMM state/F0 tracks present",
+    "Both neural voices synthesize with socket connections blocked; no cached-audio fallback",
+    "9 required/supporting figures exist"
+  ],
+  "wav_count": 126,
+  "remaining_human_action": "Collect 5-10 real listeners and run evaluate_ratings.py; no fabricated MOS.",
+  "subjective_audio_quality": "Not certified as indistinguishable from human speech."
+}

@@ -1,0 +1,20 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "onnx_threads": 2,
+  "device": "CPU",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "librosa": "0.11.0",
+    "soundfile": "0.14.0",
+    "piper-tts": "1.8.0",
+    "onnxruntime": "1.31.1",
+    "pyworld": "0.3.5"
+  },
+  "neural_model_revision": "df2a53e0b5c8039d17e642cc8d80fa03d59374b7",
+  "subjective_evaluation": "pending real listeners; NO fabricated MOS/intelligibility",
+  "crossfade_choice": "15 ms provisional compromise; confirm by listening; not optimized using invented ratings",
+  "inventory_provenance": "synthetic neural voices, not microphone recordings; confounds backend comparison"
+}

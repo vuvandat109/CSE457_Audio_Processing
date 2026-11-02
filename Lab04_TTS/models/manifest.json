@@ -1,0 +1,28 @@
+{
+  "male": {
+    "parts": [
+      "male.onnx.part01",
+      "male.onnx.part02",
+      "male.onnx.part03",
+      "male.onnx.part04"
+    ],
+    "bytes": 63516182,
+    "sha256": "821096ee1f6d424fd9d1a0ff83fd851637e5ff880e8aaf3c5b53be87269a6e26",
+    "source_repo": "vnhellboy/vietnamese-piper-voices",
+    "source_revision": "df2a53e0b5c8039d17e642cc8d80fa03d59374b7",
+    "source_voice": "diemdam"
+  },
+  "female": {
+    "parts": [
+      "female.onnx.part01",
+      "female.onnx.part02",
+      "female.onnx.part03",
+      "female.onnx.part04"
+    ],
+    "bytes": 63516182,
+    "sha256": "2832e9e64e427c36bf02665e8bbba7a41851ae34aa9de50c078ddb0a75d4cd0d",
+    "source_repo": "vnhellboy/vietnamese-piper-voices",
+    "source_revision": "df2a53e0b5c8039d17e642cc8d80fa03d59374b7",
+    "source_voice": "altotram"
+  }
+}

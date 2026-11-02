@@ -1,0 +1,9 @@
+/root/.local/lib/python3.12/site-packages/pyworld/__init__.py:13: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Processing male, sentence 1: Mời khách hàng số 23 đến quầy 5.
+Processing male, sentence 2: Mời khách hàng số 108 đến quầy 2.
+Processing male, sentence 3: Mời khách hàng số 479 đến quầy 6.
+Processing female, sentence 1: Mời khách hàng số 23 đến quầy 5.
+Processing female, sentence 2: Mời khách hàng số 108 đến quầy 2.
+Processing female, sentence 3: Mời khách hàng số 479 đến quầy 6.
+Completed A-F/objective G. Listening test remains for real participants.

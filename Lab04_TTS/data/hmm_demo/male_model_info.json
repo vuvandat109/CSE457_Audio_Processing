@@ -1,0 +1,8 @@
+{
+  "voice": "male",
+  "states_per_word": 5,
+  "frame_ms": 10.0,
+  "alignment": "equal-duration supervised segmentation",
+  "estimation": "Gaussian state means/variances; not Baum-Welch",
+  "source": "64 synthetic Piper units; two candidates per word per voice"
+}

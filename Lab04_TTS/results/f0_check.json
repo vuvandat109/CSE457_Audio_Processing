@@ -1,0 +1,8 @@
+{
+  "unit": "female_moi_01.wav",
+  "pyin_f0_hz": 172.52972650401387,
+  "period_samples": 93,
+  "fs_over_period_hz": 172.04301075268816,
+  "relative_difference_pct": 0.2821054441968183,
+  "method": "pYIN plus autocorrelation near predicted period; local voiced frame, not independent ground truth"
+}
