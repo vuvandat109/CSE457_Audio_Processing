@@ -1931,3 +1931,250 @@ tbody tr:last-child td {
     flex: 1;
   }
 }
+
+
+/* =========================================================
+   Editorial refresh — understated, human-centered analytics UI
+   Overrides the legacy vibrant dashboard without changing markup
+   or behavior. Uses a calm slate/teal palette and measured typography.
+   ========================================================= */
+:root {
+  --bg: #f3f5f6;
+  --bg-deep: #f3f5f6;
+  --surface: #ffffff;
+  --surface-solid: #ffffff;
+  --surface-soft: #f8faf9;
+  --surface-muted: #edf1f0;
+  --text: #273b44;
+  --text-strong: #172b33;
+  --text-soft: #63757d;
+  --text-faint: #87979d;
+  --line: #dde5e4;
+  --line-strong: #cad6d4;
+  --primary: #256d70;
+  --primary-2: #256d70;
+  --primary-dark: #194e52;
+  --primary-light: #eaf3f2;
+  --primary-glow: rgba(37,109,112,.10);
+  --accent: #497c8a;
+  --accent-2: #497c8a;
+  --accent-light: #edf4f5;
+  --success: #36785d;
+  --success-2: #36785d;
+  --success-light: #edf6f0;
+  --warning: #a67b38;
+  --warning-2: #a67b38;
+  --warning-light: #f8f4eb;
+  --danger: #b15c62;
+  --danger-2: #b15c62;
+  --danger-light: #faf0f0;
+  --info: #527c97;
+  --info-2: #527c97;
+  --info-light: #eef4f7;
+  --radius-xl: 16px;
+  --radius-lg: 14px;
+  --radius: 12px;
+  --radius-sm: 9px;
+  --shadow-xs: 0 1px 2px rgba(23,43,51,.025);
+  --shadow-sm: 0 2px 12px rgba(23,43,51,.025);
+  --shadow: 0 6px 24px rgba(23,43,51,.05);
+  --shadow-lg: 0 20px 60px rgba(23,43,51,.15);
+  font-family: "Segoe UI", "Be Vietnam Pro", Arial, sans-serif;
+}
+body {
+  background: #f3f5f6;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.sidebar {
+  background: #203e47;
+  border-right: 1px solid #19333b;
+  box-shadow: none;
+}
+.sidebar-logo {
+  min-height: 74px;
+  border-bottom-color: rgba(255,255,255,.09);
+}
+.logo-icon {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e8f3f2;
+  background: #375c62;
+  border: 1px solid #557479;
+  border-radius: 10px;
+}
+.logo-text {
+  font-size: 15px;
+  letter-spacing: -.15px;
+}
+.sidebar-nav { padding: 18px 12px; gap: 5px; }
+.nav-item {
+  min-height: 43px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #c4d3d6;
+}
+.nav-item:hover {
+  color: #fff;
+  background: rgba(255,255,255,.07);
+  border-color: transparent;
+  transform: none;
+}
+.nav-item.active {
+  background: #355a62;
+  border-color: transparent;
+  box-shadow: inset 3px 0 0 #9cc5c1;
+}
+.nav-icon {
+  font-family: "Segoe UI Symbol", "Segoe UI", sans-serif;
+  font-size: 16px;
+  color: #bad2d0;
+}
+.model-badge {
+  background: rgba(255,255,255,.055);
+  border-radius: 8px;
+  font-weight: 400;
+}
+.dot { background: #72b59b; animation: none; box-shadow: none; }
+.topbar {
+  min-height: 76px;
+  padding: 15px 30px;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: none;
+}
+.topbar-title h1 {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.4px;
+}
+.subtitle { font-size: 12px; color: var(--text-soft); }
+.menu-btn {
+  border-radius: 8px;
+  box-shadow: none;
+}
+.menu-btn:hover { transform: none; }
+.content {
+  width: min(1440px,100%);
+  gap: 19px;
+  padding: 26px 30px 68px;
+}
+.cards {
+  grid-template-columns: repeat(auto-fit, minmax(174px, 1fr));
+  gap: 12px;
+}
+.card {
+  min-height: 125px;
+  padding: 18px 18px 17px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(23,43,51,.025);
+}
+.card:hover {
+  transform: none;
+  border-color: #bdcfce;
+  box-shadow: 0 3px 12px rgba(23,43,51,.05);
+}
+.card::before, .card::after { display: none; }
+.card-header-line { margin-bottom: 12px; }
+.card-icon {
+  width: 27px;
+  height: 27px;
+  border: 1px solid #e4ebea;
+  border-radius: 7px;
+  background: #f3f6f6;
+  color: #627b81;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: .3px;
+  font-weight: 700;
+}
+.card .card-value,
+.card-value {
+  color: var(--text-strong);
+  font-weight: 730;
+  letter-spacing: -.7px;
+}
+.card-title, .card-label {
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: .05px;
+}
+.card--primary, .card--warning, .card--info, .card--danger, .card--success {
+  color: var(--text-strong);
+}
+.section {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  box-shadow: 0 1px 4px rgba(23,43,51,.025);
+}
+.section-header h2 {
+  color: var(--text-strong);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.18px;
+}
+.badge-count, .file-badge {
+  border-radius: 7px;
+  font-weight: 600;
+}
+.section form,
+.mic-recorder {
+  background: #fafbfb;
+  box-shadow: none;
+  border-color: var(--line);
+}
+.mic-btn--start,
+.primary-btn {
+  background: #256d70;
+  box-shadow: none;
+}
+.mic-btn--start:hover:not(:disabled),
+.primary-btn:hover:not(:disabled) {
+  background: #194e52;
+  box-shadow: none;
+  transform: none;
+}
+.mic-btn--stop { background: #ad555b; box-shadow: none; }
+.mic-btn--stop:hover { box-shadow: none; transform: none; }
+.mic-recorder { border-radius: 10px; }
+.audio-file-input, input, select, textarea { border-radius: 8px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 2px solid #7eaaa9;
+  outline-offset: 2px;
+}
+.phoneme-table th {
+  background: #f3f6f6;
+  color: #5c747b;
+  font-size: 11px;
+  font-weight: 650;
+}
+.phoneme-table td { font-size: 12px; }
+.phoneme-table { box-shadow: none; border-color: var(--line); }
+.error-cell { color: #99474d; background: #fbf4f4; }
+.correct-cell { color: #36785d; background: #f1f8f3; }
+.drawer {
+  background: #fff;
+  box-shadow: -12px 0 40px rgba(23,43,51,.10);
+}
+@media(max-width: 900px) {
+  .content { padding: 20px 18px 56px; }
+  .topbar { padding: 12px 18px; }
+}
+@media(max-width: 640px) {
+  .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .card { min-height: 110px; padding: 14px; }
+  .section { padding: 16px; }
+}
+@media(max-width: 390px) {
+  .cards { grid-template-columns: 1fr; }
+}
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
