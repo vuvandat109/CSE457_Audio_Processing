@@ -3239,10 +3239,6 @@ export default function App() {
                     ).toFixed(2)}s
                   </span>
 
-                  {testResult.cached && (
-                    <span className="badge-count">⚡ Kết quả đã lưu, không chạy lại AI</span>
-                  )}
-
                   {testResult.has_ground_truth && (
                     <>
                       <span className="badge-count">
