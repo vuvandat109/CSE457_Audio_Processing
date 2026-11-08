@@ -20,3 +20,5 @@ services:
         value: "2"
       - key: TOKENIZERS_PARALLELISM
         value: "false"
+      - key: ASR_MAX_LOADED_MODELS
+        value: "1"
