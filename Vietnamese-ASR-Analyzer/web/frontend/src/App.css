@@ -1939,37 +1939,37 @@ tbody tr:last-child td {
    or behavior. Uses a calm slate/teal palette and measured typography.
    ========================================================= */
 :root {
-  --bg: #f3f5f6;
-  --bg-deep: #f3f5f6;
+  --bg: #edf2f7;
+  --bg-deep: #edf2f7;
   --surface: #ffffff;
   --surface-solid: #ffffff;
   --surface-soft: #f8faf9;
   --surface-muted: #edf1f0;
-  --text: #273b44;
-  --text-strong: #172b33;
-  --text-soft: #63757d;
+  --text: #243344;
+  --text-strong: #14243a;
+  --text-soft: #53677b;
   --text-faint: #87979d;
-  --line: #dde5e4;
-  --line-strong: #cad6d4;
-  --primary: #256d70;
-  --primary-2: #256d70;
-  --primary-dark: #194e52;
-  --primary-light: #eaf3f2;
-  --primary-glow: rgba(37,109,112,.10);
+  --line: #dbe4ec;
+  --line-strong: #bccbd9;
+  --primary: #1269a0;
+  --primary-2: #1269a0;
+  --primary-dark: #0b4c7b;
+  --primary-light: #e7f2fb;
+  --primary-glow: rgba(18,105,160,.14);
   --accent: #497c8a;
   --accent-2: #497c8a;
   --accent-light: #edf4f5;
-  --success: #36785d;
-  --success-2: #36785d;
+  --success: #147d58;
+  --success-2: #147d58;
   --success-light: #edf6f0;
-  --warning: #a67b38;
-  --warning-2: #a67b38;
+  --warning: #b47517;
+  --warning-2: #b47517;
   --warning-light: #f8f4eb;
-  --danger: #b15c62;
-  --danger-2: #b15c62;
+  --danger: #c44950;
+  --danger-2: #c44950;
   --danger-light: #faf0f0;
-  --info: #527c97;
-  --info-2: #527c97;
+  --info: #1874ba;
+  --info-2: #1874ba;
   --info-light: #eef4f7;
   --radius-xl: 16px;
   --radius-lg: 14px;
@@ -1982,13 +1982,13 @@ tbody tr:last-child td {
   font-family: "Segoe UI", "Be Vietnam Pro", Arial, sans-serif;
 }
 body {
-  background: #f3f5f6;
+  background: #edf2f7;
   font-size: 14px;
   line-height: 1.55;
 }
 .sidebar {
-  background: #203e47;
-  border-right: 1px solid #19333b;
+  background: #142f4b;
+  border-right: 1px solid #10283e;
   box-shadow: none;
 }
 .sidebar-logo {
@@ -2000,8 +2000,8 @@ body {
   font-size: 20px;
   font-weight: 700;
   color: #e8f3f2;
-  background: #375c62;
-  border: 1px solid #557479;
+  background: #245274;
+  border: 1px solid #3a7195;
   border-radius: 10px;
 }
 .logo-text {
@@ -2023,9 +2023,9 @@ body {
   transform: none;
 }
 .nav-item.active {
-  background: #355a62;
+  background: #245a86;
   border-color: transparent;
-  box-shadow: inset 3px 0 0 #9cc5c1;
+  box-shadow: inset 3px 0 0 #70c7ef;
 }
 .nav-icon {
   font-family: "Segoe UI Symbol", "Segoe UI", sans-serif;
@@ -2086,8 +2086,8 @@ body {
   height: 27px;
   border: 1px solid #e4ebea;
   border-radius: 7px;
-  background: #f3f6f6;
-  color: #627b81;
+  background: #e8f3fb;
+  color: #1a6891;
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 10px;
   letter-spacing: .3px;
@@ -2132,12 +2132,12 @@ body {
 }
 .mic-btn--start,
 .primary-btn {
-  background: #256d70;
+  background: #1269a0;
   box-shadow: none;
 }
 .mic-btn--start:hover:not(:disabled),
 .primary-btn:hover:not(:disabled) {
-  background: #194e52;
+  background: #0b4c7b;
   box-shadow: none;
   transform: none;
 }
@@ -2146,11 +2146,11 @@ body {
 .mic-recorder { border-radius: 10px; }
 .audio-file-input, input, select, textarea { border-radius: 8px; }
 input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
-  outline: 2px solid #7eaaa9;
+  outline: 2px solid #2688c6;
   outline-offset: 2px;
 }
 .phoneme-table th {
-  background: #f3f6f6;
+  background: #e8f3fb;
   color: #5c747b;
   font-size: 11px;
   font-weight: 650;
@@ -2178,3 +2178,28 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 @media(prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Stronger contrast and app-standard hierarchy */
+.topbar-title h1 { font-size: 21px; font-weight: 750; }
+.logo-text, .logo-text strong { color: #f8fcff; }
+.sidebar .nav-item { color: #d9e6f2; }
+.sidebar .nav-item.active { color: #fff; font-weight: 650; }
+.nav-icon { color: #c6e6fa; }
+.nav-count {
+  display: inline-flex; min-width: 24px; justify-content: center;
+  padding: 1px 6px; margin-left: 4px; border-radius: 5px;
+  color: #e5f5ff; background: rgba(255,255,255,.16);
+  font-size: 11px; font-weight: 700;
+}
+.card { border-color: #d3e0eb; }
+.card h3 { color: #435d73; font-size: 12px; letter-spacing: 0; }
+.card .card-value, .card-value { color: #123f68; }
+.section-header h2 { font-size: 17px; }
+.section { border-color: #d9e3ec; }
+.topbar select:focus, .section select:focus { border-color: #1583c2; }
+.mic-btn--start, .primary-btn { background: #1269a0; color: #fff; }
+.mic-btn--start:hover:not(:disabled), .primary-btn:hover:not(:disabled) { background: #0b4c7b; }
+.badge-count { background: #eaf4fc; color: #205b81; border: 1px solid #d0e4f5; }
+.file-badge { background: #edf5fc; color: #165581; }
+.table-container thead, .phoneme-table th { background: #edf4fa; }
+.section form { background: #fff; }
