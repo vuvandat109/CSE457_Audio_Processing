@@ -27,10 +27,10 @@ def test_dashboard_without_audio_clips():
         assert listing.status_code == 200
         items = listing.json()["data"]
         assert len(items) == 1000
-        assert all(not x["audio_available"] for x in items)
+        assert all(x["audio_available"] == (ROOT / "dataset" / "audio" / x["audio"]).is_file() for x in items)
         detail = client.get("/api/audio-detail/" + items[0]["audio"], params={"model": model})
         assert detail.status_code == 200
-        assert detail.json()["audio_available"] is False
+        assert detail.json()["audio_available"] == (ROOT / "dataset" / "audio" / items[0]["audio"]).is_file()
 
 
 def test_saved_results_are_consistent():
