@@ -2282,3 +2282,49 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
   background: #e6dbff !important;
   border-color: #a689e7 !important;
 }
+
+
+/* Single-model interface: strong readable badge, no redundant model selector. */
+.single-model-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+  padding: 9px 15px;
+  border: 1px solid #b3d8f2;
+  background: #e5f3fc;
+  color: #0c517e;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.single-model-pill__dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: #147d58;
+}
+.model-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 14px;
+  border: 1px solid #cddfea;
+  background: #f1f8fd;
+  border-radius: 10px;
+}
+.model-info__label {
+  color: #526b7f;
+  font-size: 12px;
+  font-weight: 600;
+}
+.model-info strong { color: #125889; font-size: 14px; }
+@media(max-width: 640px) {
+  .single-model-pill {
+    margin-left: 0;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
