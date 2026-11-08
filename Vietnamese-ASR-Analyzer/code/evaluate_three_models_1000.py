@@ -32,7 +32,7 @@ def load_metadata(path):
     if not rows or not {"audio", "text"}.issubset(rows[0]):
         raise ValueError("metadata must contain audio and text columns")
     names = [row["audio"] for row in rows]
-    if any(not name or Path(name).name != name or "/" in name or "\\\\" in name for name in names):
+    if any(not name or Path(name).name != name or "/" in name or chr(92) in name for name in names):
         raise ValueError("metadata contains invalid/non-local audio names")
     if len(names) != len(set(names)):
         raise ValueError("Duplicate audio names in metadata")
