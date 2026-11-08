@@ -32,27 +32,13 @@ ROOT = Path(__file__).resolve().parent
 DATASET_DIR = ROOT.parent / "dataset"
 
 MODEL_CONFIG = {
-    "whisper": {
-        "name": "Whisper base",
-        "analysis": DATASET_DIR / "sentence_analysis_whisper.json",
-        "results": DATASET_DIR / "asr_results.csv",
-        "output": DATASET_DIR / "error_statistics_whisper.json",
-    },
-    "phowhisper": {
-        "name": "PhoWhisper base",
-        "analysis": DATASET_DIR / "sentence_analysis_phowhisper.json",
-        "results": DATASET_DIR / "asr_results_phowhisper.csv",
-        "output": DATASET_DIR / "error_statistics_phowhisper.json",
-    },
     "wav2vec2": {
-        "name": "Wav2Vec2 Vietnamese",
+        "name": "Wav2Vec2 tiếng Việt",
         "analysis": DATASET_DIR / "sentence_analysis_wav2vec2.json",
         "results": DATASET_DIR / "asr_results_wav2vec2.csv",
         "output": DATASET_DIR / "error_statistics_wav2vec2.json",
     },
 }
-
-LEGACY_OUTPUT = DATASET_DIR / "error_statistics.json"
 
 
 def convert(obj):
@@ -446,20 +432,7 @@ def generate_for_model(model_key: str):
         )
 
     # He thong cu van dung Whisper
-    if model_key == "whisper":
 
-        with open(
-            LEGACY_OUTPUT,
-            "w",
-            encoding="utf-8"
-        ) as f:
-
-            json.dump(
-                output,
-                f,
-                ensure_ascii=False,
-                indent=2
-            )
 
     print("Total audio:", len(samples))
     print("Total error:", total_error)
@@ -493,38 +466,9 @@ def generate_for_model(model_key: str):
 
 
 def main():
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--model",
-        choices=[
-            "whisper",
-            "phowhisper",
-            "wav2vec2",
-            "all"
-        ],
-        default="all"
-    )
-
-    args = parser.parse_args()
-
-    if args.model == "all":
-
-        generate_for_model("whisper")
-        generate_for_model("phowhisper")
-        generate_for_model("wav2vec2")
-
-    else:
-
-        generate_for_model(
-            args.model
-        )
-
-    print()
-    print("==========================================")
-    print("ALL DONE")
-    print("==========================================")
+    parser = argparse.ArgumentParser(description="Tạo thống kê Wav2Vec2")
+    parser.parse_args()
+    generate_for_model("wav2vec2")
 
 
 if __name__ == "__main__":
