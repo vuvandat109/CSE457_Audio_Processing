@@ -27,3 +27,6 @@ venv/
 web/backend/uploads/
 web/backend/ffmpeg.exe
 *.exe
+
+# Fresh evaluation output, generated only after real local inference
+dataset/evaluation_recheck/
