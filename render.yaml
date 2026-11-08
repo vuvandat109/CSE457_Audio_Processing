@@ -10,7 +10,7 @@ services:
     dockerfilePath: ./Vietnamese-ASR-Analyzer/Dockerfile
     dockerContext: ./Vietnamese-ASR-Analyzer
     healthCheckPath: /health
-    autoDeployTrigger: commit
+    autoDeployTrigger: checksPass
     envVars:
       - key: USE_TF
         value: "0"
