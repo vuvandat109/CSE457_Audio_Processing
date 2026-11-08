@@ -285,6 +285,10 @@ def _num(value) -> Optional[float]:
 
 @app.get("/")
 def home():
+    # Serve React on Render/Docker while retaining the local API landing route.
+    if FRONTEND_DIST and (FRONTEND_DIST / "index.html").is_file():
+        from fastapi.responses import FileResponse
+        return FileResponse(FRONTEND_DIST / "index.html")
 
     return {
         "message": "Vietnamese ASR Error Analyzer API",
