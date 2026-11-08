@@ -1,0 +1,27 @@
+name: Vietnamese ASR Docker build
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Vietnamese-ASR-Analyzer/Dockerfile'
+      - 'Vietnamese-ASR-Analyzer/.dockerignore'
+      - 'Vietnamese-ASR-Analyzer/web/backend/requirements.docker.txt'
+      - '.github/workflows/asr-docker-build.yml'
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build Docker image, without publishing
+        uses: docker/build-push-action@v6
+        with:
+          context: ./Vietnamese-ASR-Analyzer
+          file: ./Vietnamese-ASR-Analyzer/Dockerfile
+          push: false
+          tags: vietnamese-asr-analyzer:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=min
