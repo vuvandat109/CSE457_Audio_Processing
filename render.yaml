@@ -1,11 +1,11 @@
-# ASR only. Does not modify the existing Gesture-AI Render services.
-# Requires explicit approval of a paid compute plan before applying.
+# Wav2Vec2-only Render Free trial. Does not affect other Render services.
+# 512 MB RAM may still be insufficient for full PyTorch inference.
 services:
   - type: web
-    name: vietnamese-asr-analyzer
+    name: vietnamese-asr-wav2vec2
     runtime: docker
     region: singapore
-    plan: 2c-4g
+    plan: free
     branch: main
     dockerfilePath: ./Vietnamese-ASR-Analyzer/Dockerfile
     dockerContext: ./Vietnamese-ASR-Analyzer
@@ -16,9 +16,9 @@ services:
         value: "0"
       - key: USE_FLAX
         value: "0"
-      - key: OMP_NUM_THREADS
-        value: "2"
       - key: TOKENIZERS_PARALLELISM
         value: "false"
-      - key: ASR_MAX_LOADED_MODELS
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: MKL_NUM_THREADS
         value: "1"
