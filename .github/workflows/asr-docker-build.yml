@@ -6,7 +6,11 @@ on:
     paths:
       - 'Vietnamese-ASR-Analyzer/Dockerfile'
       - 'Vietnamese-ASR-Analyzer/.dockerignore'
+      - 'Vietnamese-ASR-Analyzer/web/backend/**'
+      - 'Vietnamese-ASR-Analyzer/web/frontend/**'
       - 'Vietnamese-ASR-Analyzer/web/backend/requirements.docker.txt'
+      - 'Vietnamese-ASR-Analyzer/dataset/metadata.csv'
+      - 'Vietnamese-ASR-Analyzer/dataset/*wav2vec2*'
       - '.github/workflows/asr-docker-build.yml'
 
 jobs:
