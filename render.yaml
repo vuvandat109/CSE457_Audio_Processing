@@ -1,0 +1,22 @@
+# ASR only. Does not modify the existing Gesture-AI Render services.
+# Requires explicit approval of a paid compute plan before applying.
+services:
+  - type: web
+    name: vietnamese-asr-analyzer
+    runtime: docker
+    region: singapore
+    plan: 2c-4g
+    branch: main
+    dockerfilePath: ./Vietnamese-ASR-Analyzer/Dockerfile
+    dockerContext: ./Vietnamese-ASR-Analyzer
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: USE_TF
+        value: "0"
+      - key: USE_FLAX
+        value: "0"
+      - key: OMP_NUM_THREADS
+        value: "2"
+      - key: TOKENIZERS_PARALLELISM
+        value: "false"
