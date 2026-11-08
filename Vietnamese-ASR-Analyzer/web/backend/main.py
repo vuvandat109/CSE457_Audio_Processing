@@ -621,6 +621,7 @@ def audio_list(
         "data": [
             {
                 "audio": x.get("audio"),
+                "audio_available": (AUDIO_DIR / Path(str(x.get("audio", ""))).name).is_file(),
                 "wer": x.get("wer"),
                 "cer": x.get("cer"),
                 "status": x["status"],
@@ -664,7 +665,10 @@ def audio_detail(
             )
         )
 
-    return item
+    return {
+        **item,
+        "audio_available": (AUDIO_DIR / Path(str(item.get("audio", ""))).name).is_file(),
+    }
 
 
 # =====================================================
