@@ -1872,6 +1872,8 @@ export default function App() {
 
   useEffect(() => {
 
+    // Reset to the first page when the table query changes.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentPage(1);
 
   }, [search, filter, pageSize, werFilter, errorFilter, sortBy]);
@@ -1882,6 +1884,8 @@ export default function App() {
 
     if (currentPage > totalPages) {
 
+      // Clamp the selected page after filtering shrinks the result set.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentPage(totalPages);
 
     }
