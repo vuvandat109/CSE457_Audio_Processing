@@ -139,3 +139,29 @@ def test_upload_reports_inference_failure(monkeypatch):
     )
     assert response.status_code == 500
     assert "test-only inference failure" in response.json()["detail"]
+
+
+def test_repeated_upload_is_cached_but_ground_truth_is_rescored(monkeypatch):
+    calls = []
+    def fake_inference(path, model):
+        calls.append(model)
+        return "xin chào"
+    monkeypatch.setattr(module, "transcribe_audio", fake_inference)
+    payload = b"unique cached audio sample for regression"
+    first = client.post(
+        "/api/test-audio",
+        data={"model": "phowhisper", "ground_truth": "xin chào"},
+        files={"file": ("cached.mp3", payload, "audio/mpeg")},
+    )
+    second = client.post(
+        "/api/test-audio",
+        data={"model": "phowhisper", "ground_truth": "xin tạm biệt"},
+        files={"file": ("cached.mp3", payload, "audio/mpeg")},
+    )
+    assert first.status_code == 200, first.text
+    assert second.status_code == 200, second.text
+    assert first.json()["cached"] is False
+    assert second.json()["cached"] is True
+    assert len(calls) == 1
+    assert first.json()["wer"] == 0
+    assert second.json()["wer"] > 0
