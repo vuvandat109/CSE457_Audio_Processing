@@ -76,25 +76,16 @@ BASE_DIR = Path(
 )
 
 STAT_FILES = {
-    "whisper": BASE_DIR / "error_statistics_whisper.json",
-    "phowhisper": BASE_DIR / "error_statistics_phowhisper.json",
     "wav2vec2": BASE_DIR / "error_statistics_wav2vec2.json",
 }
-MODEL_COMPARISON_FILE = BASE_DIR / "model_comparison.json"
-
 ANALYSIS_FILES = {
-    "whisper": BASE_DIR / "sentence_analysis_whisper.json",
-    "phowhisper": BASE_DIR / "sentence_analysis_phowhisper.json",
     "wav2vec2": BASE_DIR / "sentence_analysis_wav2vec2.json",
 }
-
 MODEL_NAMES = {
-    "whisper": "Whisper base",
-    "phowhisper": "PhoWhisper base",
-    "wav2vec2": "Wav2Vec2 Vietnamese",
+    "wav2vec2": "Wav2Vec2 tiếng Việt",
 }
 
-DEFAULT_MODEL = "whisper"
+DEFAULT_MODEL = "wav2vec2"
 
 ALLOWED_ORIGINS = os.getenv(
     "CORS_ORIGINS",
@@ -154,23 +145,8 @@ app.add_middleware(
 _json_cache: dict[Path, tuple[float, Any]] = {}
 
 _indexes = {
-    "whisper": {
-        "src": None,
-        "items": [],
-        "by_audio": {}
-    },
-    "phowhisper": {
-        "src": None,
-        "items": [],
-        "by_audio": {}
-    },
-    "wav2vec2": {
-        "src": None,
-        "items": [],
-        "by_audio": {}
-    }
+    "wav2vec2": {"src": None, "items": [], "by_audio": {}},
 }
-
 
 # =====================================================
 # LOAD JSON
@@ -352,7 +328,7 @@ def models():
 def statistics(
     model: str = Query(
         DEFAULT_MODEL,
-        pattern="^(whisper|phowhisper|wav2vec2)$"
+        pattern="^wav2vec2$"
     )
 ):
 
@@ -365,36 +341,6 @@ def statistics(
     )
 
     return stat
-
-
-# =====================================================
-# MODEL COMPARISON
-# =====================================================
-
-@app.get("/api/model-comparison")
-@app.get("/api/v1/analytics/model-comparison", tags=["Analytics"])
-def model_comparison():
-
-    data = load_json(
-        MODEL_COMPARISON_FILE
-    )
-
-    models = data.get(
-        "models",
-        []
-    )
-
-    best = data.get(
-        "best",
-        {}
-    )
-
-    return {
-        "models": models,
-        "best": best,
-        "total_models": len(models)
-    }
-
 
 
 # =====================================================
@@ -598,7 +544,7 @@ async def test_audio(
 def audio_list(
     model: str = Query(
         DEFAULT_MODEL,
-        pattern="^(whisper|phowhisper|wav2vec2)$"
+        pattern="^wav2vec2$"
     ),
 
     status: Optional[str] = Query(
@@ -683,7 +629,7 @@ def audio_detail(
     audio: str,
     model: str = Query(
         DEFAULT_MODEL,
-        pattern="^(whisper|phowhisper|wav2vec2)$"
+        pattern="^wav2vec2$"
     )
 ):
 
@@ -736,14 +682,12 @@ def ready():
         "audio_dir": AUDIO_DIR.is_dir(),
         "statistics": {key: path.is_file() for key, path in STAT_FILES.items()},
         "analysis": {key: path.is_file() for key, path in ANALYSIS_FILES.items()},
-        "model_comparison": MODEL_COMPARISON_FILE.is_file(),
     }
     ok = (
         checks["dataset_dir"]
         and checks["audio_dir"]
         and all(checks["statistics"].values())
         and all(checks["analysis"].values())
-        and checks["model_comparison"]
     )
     return JSONResponse(
         status_code=200 if ok else 503,
