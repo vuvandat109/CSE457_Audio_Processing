@@ -2088,7 +2088,7 @@ export default function App() {
 
 
 
-          <span className="logo-icon">🎙️</span>
+          <span className="logo-icon">A</span>
 
 
 
@@ -2120,7 +2120,7 @@ export default function App() {
 
 
 
-            <span className="nav-icon">📊</span>
+            <span className="nav-icon">▦</span>
 
 
 
@@ -2136,7 +2136,7 @@ export default function App() {
 
 
 
-            <span className="nav-icon">⚠️</span>
+            <span className="nav-icon">!</span>
 
 
 
@@ -2152,7 +2152,7 @@ export default function App() {
 
 
 
-            <span className="nav-icon">✅</span>
+            <span className="nav-icon">✓</span>
 
 
 
@@ -2379,7 +2379,7 @@ export default function App() {
 
 
 
-              icon="📁"
+              icon="01"
 
 
 
@@ -2403,7 +2403,7 @@ export default function App() {
 
 
 
-              icon="⚡"
+              icon="02"
 
 
 
@@ -2427,7 +2427,7 @@ export default function App() {
 
 
 
-              icon="📉"
+              icon="03"
 
 
 
@@ -2451,7 +2451,7 @@ export default function App() {
 
 
 
-              icon="🎯"
+              icon="04"
 
 
 
@@ -2469,35 +2469,35 @@ export default function App() {
 
             />
             <StatCard
-              icon="🧮"
+              icon="05"
               title="Corpus WER"
               value={percent(statistics?.corpus_wer)}
               variant="warning"
             />
 
             <StatCard
-              icon="🔁"
+              icon="06"
               title="Thay thế (S)"
               value={statistics?.word_error_counts?.substitutions ?? 0}
               variant="danger"
             />
 
             <StatCard
-              icon="➖"
+              icon="07"
               title="Mất từ (D)"
               value={statistics?.word_error_counts?.deletions ?? 0}
               variant="warning"
             />
 
             <StatCard
-              icon="➕"
+              icon="08"
               title="Thêm từ (I)"
               value={statistics?.word_error_counts?.insertions ?? 0}
               variant="info"
             />
 
             <StatCard
-              icon="⚠️"
+              icon="09"
               title="Hallucination"
               value={statistics?.hallucination?.count ?? 0}
               variant="danger"
@@ -2511,7 +2511,7 @@ export default function App() {
 
 
 
-              icon="✨"
+              icon="10"
 
 
 
@@ -2535,7 +2535,7 @@ export default function App() {
 
 
 
-              icon="❌"
+              icon="11"
 
 
 
