@@ -1,38 +1,105 @@
-"""Select Common Voice clips and generate audio/text metadata."""
-import argparse
-import shutil
-from pathlib import Path
 import pandas as pd
+import os
+import shutil
+from tqdm import tqdm
 
-DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--tsv", type=Path, required=True, help="Common Voice vi/validated.tsv")
-    parser.add_argument("--clips", type=Path, required=True, help="Common Voice vi/clips directory")
-    parser.add_argument("--output-dir", type=Path, default=DATASET_DIR)
-    parser.add_argument("--limit", type=int, default=1000)
-    parser.add_argument("--seed", type=int, default=42)
-    args = parser.parse_args()
-    if args.limit < 1:
-        parser.error("--limit must be positive")
-    df = pd.read_csv(args.tsv, sep="\t", encoding="utf-8")
-    required = {"path", "sentence", "up_votes", "down_votes"}
-    if not required.issubset(df.columns):
-        parser.error(f"Missing TSV columns: {required - set(df.columns)}")
-    df = df[(df["up_votes"] >= 2) & (df["down_votes"] == 0)]
-    selected = df.sample(n=min(args.limit, len(df)), random_state=args.seed)
-    audio_dir = args.output_dir / "audio"
-    audio_dir.mkdir(parents=True, exist_ok=True)
-    rows = []
-    for row in selected.itertuples(index=False):
-        source = args.clips / Path(str(row.path)).name
-        if source.is_file():
-            shutil.copy2(source, audio_dir / source.name)
-            rows.append({"audio": source.name, "text": row.sentence})
-    pd.DataFrame(rows, columns=["audio", "text"]).to_csv(
-        args.output_dir / "metadata.csv", index=False, encoding="utf-8-sig")
-    print(f"Prepared {len(rows)} clips in {audio_dir}")
+# File Common Voice
+tsv_file = r"E:\cv-corpus-26.0-2026-06-12\vi\validated.tsv"
 
-if __name__ == "__main__":
-    main()
+# Thư mục chứa audio
+audio_folder = r"E:\cv-corpus-26.0-2026-06-12\vi\clips"
+
+
+# Thư mục xuất ra
+output_folder = r"E:\ASR_Project\dataset"
+
+output_audio = os.path.join(output_folder, "audio")
+
+os.makedirs(output_audio, exist_ok=True)
+
+
+# Đọc TSV
+df = pd.read_csv(
+    tsv_file,
+    sep="\t",
+    encoding="utf-8"
+)
+
+
+print("Tổng dữ liệu:", len(df))
+
+
+# Lọc dữ liệu tốt
+df = df[
+    (df["up_votes"] >= 2)
+    &
+    (df["down_votes"] == 0)
+]
+
+
+print("Sau khi lọc:", len(df))
+
+
+# Lấy 1000 câu
+df = df.sample(
+    n=1000,
+    random_state=42
+)
+
+
+data = []
+
+
+for _, row in tqdm(df.iterrows(), total=len(df)):
+
+    file_name = row["path"]
+
+    source = os.path.join(
+        audio_folder,
+        file_name
+    )
+
+    destination = os.path.join(
+        output_audio,
+        file_name
+    )
+
+
+    if os.path.exists(source):
+
+        shutil.copy(
+            source,
+            destination
+        )
+
+
+        data.append([
+            file_name,
+            row["sentence"]
+        ])
+
+
+
+# tạo metadata
+metadata = pd.DataFrame(
+    data,
+    columns=[
+        "audio",
+        "text"
+    ]
+)
+
+
+metadata.to_csv(
+    os.path.join(
+        output_folder,
+        "metadata.csv"
+    ),
+    index=False,
+    encoding="utf-8-sig"
+)
+
+
+print("HOÀN TẤT")
+print("Số audio:", len(metadata))

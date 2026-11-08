@@ -1,88 +1,57 @@
 # Vietnamese ASR Analyzer
 
-Dự án đánh giá nhận dạng tiếng Việt bằng **OpenAI Whisper base**, tính WER/CER, phân tích lỗi âm tiết và trình bày kết quả bằng FastAPI + React. Dashboard đọc **kết quả đã lưu** trong `dataset/`; chạy dashboard không tải model và không cần các MP3 gốc. Chạy đánh giá mới cần audio Common Voice, FFmpeg và tải model Whisper ở lần chạy đầu.
+Ứng dụng FastAPI + React để nhận dạng audio mới và xem kết quả đánh giá tiếng Việt trên 1.000 mẫu Common Voice. Giao diện có ba lựa chọn: **OpenAI Whisper base**, **vinai/PhoWhisper-base** và **Wav2Vec2 Vietnamese**. Chọn model trên web trước khi xem thống kê hoặc gửi audio mới. Model chỉ tải khi nhận dạng audio mới; dashboard đọc kết quả đã lưu.
 
-## Kết quả hiện có
+## Nguồn dữ liệu và kết quả
 
-Bộ kết quả lưu trong repo gồm **20 mẫu** lấy từ 20 dòng đầu của `dataset/metadata.csv`: WER trung bình theo câu **41,18%**, CER trung bình theo câu **16,99%**; 19 câu có lỗi và 1 câu đúng theo bộ phân tích hiện tại. Đây là thử nghiệm sơ bộ, không phải độ chính xác trên toàn bộ Common Voice. Không dùng những số này để suy ra hiệu năng chung hoặc so sánh các model khác nhau.
+Các tệp `dataset/asr_results.csv`, `asr_results_phowhisper.csv`, `asr_results_wav2vec2.csv` được đồng bộ từ bản `ASR_Project(1).zip` do chủ dự án cung cấp. Mỗi tệp có 1.000 dự đoán, không có dòng lỗi; tên audio và câu chuẩn khớp 1.000 dòng trong `dataset/metadata.csv`. JSON phân tích câu, thống kê và so sánh được tạo lại từ các CSV này. Đây là kiểm tra tính nhất quán của kết quả đã lưu, **không phải lần chạy suy luận model mới trong GitHub**. Audio gốc (1.000 MP3 trong ZIP) không được đẩy vào repository, nên cần đặt tại `dataset/audio/` để phát lại và tái chạy đánh giá.
 
-$$
-\mathrm{WER}=\frac{S+D+I}{N_{\mathrm{từ\ chuẩn}}}, \qquad
-\mathrm{CER}=\frac{S_c+D_c+I_c}{N_{\mathrm{ký\ tự\ chuẩn}}}.
-$$
+| Model | WER trung bình theo câu | CER trung bình theo câu | Corpus WER |
+| --- | ---: | ---: | ---: |
+| Whisper base | 48,98% | 26,44% | 45,17% |
+| PhoWhisper base | 10,57% | 4,75% | 9,78% |
+| Wav2Vec2 Vietnamese | 8,32% | 3,04% | 8,63% |
 
-`S`, `D`, `I` lần lượt là thay thế, bỏ sót và thêm. WER/CER trung bình trên dashboard là trung bình các tỷ lệ **từng câu**; `corpus_wer` là tỷ lệ gộp theo tổng số từ. Các bước chuẩn hóa, tách từ và xử lý dấu câu ảnh hưởng đến điểm số.
+WER/CER phụ thuộc cách chuẩn hóa và tách từ; đây là số liệu trên bộ 1.000 mẫu này, không đại diện toàn bộ Common Voice. Không có bằng chứng về quá trình huấn luyện lại model trong dự án: ba model dùng checkpoint đã có.
 
-## Cấu trúc
+## Chạy web trên Windows CMD
 
-- `code/`: chuẩn bị dữ liệu, Whisper batch inference, WER/CER, phân tích lỗi, tạo JSON thống kê.
-- `dataset/metadata.csv`: danh sách khoảng 1.000 tên clip và transcript; `dataset/asr_results.csv`: 20 dự đoán lưu sẵn.
-- `dataset/sentence_analysis.json`, `error_statistics.json`, `summary_report.json`: dữ liệu cho dashboard/báo cáo.
-- `dataset/audio/`: để trống khi clone; MP3 Common Voice không được đẩy lên GitHub.
-- `web/backend/`: FastAPI đọc JSON; `web/frontend/`: React/Vite.
-- `tests/`: kiểm tra phép tính và API không cần audio gốc.
+Yêu cầu Python có môi trường tương thích với PyTorch/Transformers, Node.js 22+, FFmpeg có thể chạy bằng lệnh `ffmpeg -version`. Nếu đang dùng thư mục giải nén `E:\ASR_Project`, thay đường dẫn bên dưới cho phù hợp. Cửa sổ CMD 1:
 
-## Chạy dashboard từ GitHub
-
-Yêu cầu Python **3.12**, Node.js **22+**, npm. Mở terminal ở thư mục `Vietnamese-ASR-Analyzer`:
-
-```bash
-python -m venv .venv
-# Windows PowerShell:
-.venv\Scripts\Activate.ps1
-# Linux/macOS:
-# source .venv/bin/activate
-python -m pip install -r requirements.txt
-cd web/backend
+```cmd
+cd /d E:\ASR_Project
+python -m pip install -r requirements-asr.txt
+cd web\backend
 python -m uvicorn main:app --reload
 ```
 
-Mở terminal thứ hai từ gốc dự án:
+Cửa sổ CMD 2:
 
-```bash
-cd web/frontend
+```cmd
+cd /d E:\ASR_Project\web\frontend
 npm ci
 npm run dev
 ```
 
-Truy cập http://localhost:5173; API http://127.0.0.1:8000/docs. Danh sách, biểu đồ, WER/CER và chi tiết câu hoạt động từ dữ liệu lưu sẵn. Nút phát audio chỉ có tác dụng sau khi bạn đặt đúng MP3 vào `dataset/audio/`. Nếu muốn dùng frontend khác cổng/API, đặt `VITE_API_URL` trước khi chạy Vite và cấu hình `CORS_ORIGINS` cho backend.
+Mở http://localhost:5173 và API http://127.0.0.1:8000/docs. Nếu thiếu FFmpeg nhưng `pip` hoạt động, xem hướng dẫn tự động ở `docs/FFMPEG_WINDOWS.md`. Model được tải về ở lần nhận dạng mới đầu tiên; cần kết nối mạng và đủ dung lượng.
 
-## Chạy lại Whisper trên audio thật
+## Tái tạo thống kê từ CSV đã lưu
 
-Tải Common Voice tiếng Việt từ Mozilla theo điều kiện cấp phép của bộ dữ liệu. Giải nén `validated.tsv` và thư mục `clips/`. Cài **FFmpeg** và xác nhận `ffmpeg -version` chạy trong terminal. Audio gốc không có trong repo; không thể kiểm chứng lại đầu ra Whisper chỉ bằng mã nguồn và CSV.
+Tại thư mục gốc dự án:
 
-Nếu muốn tạo lại metadata và chép tối đa 1.000 clip từ tập gốc:
-
-```bash
-python code/prepare_data.py --tsv "/duong-dan/vi/validated.tsv" --clips "/duong-dan/vi/clips" --limit 1000 --seed 42
+```cmd
+python code\generate_sentence_analysis.py --model all
+python code\generate_error_statistics.py --model all
+python code\generate_model_comparison.py
 ```
 
-Trên Windows thay đường dẫn bằng đường dẫn thật, ví dụ `C:\...\validated.tsv` và `C:\...\clips`. Nếu muốn tái hiện đúng bộ 20 mẫu lưu sẵn, lấy đúng 20 tên MP3 đầu trong `dataset/metadata.csv` và chép vào `dataset/audio/` (không cần tạo lại metadata).
+Để **chạy lại suy luận PhoWhisper trên 1.000 MP3 thật**, trước tiên đặt các MP3 đúng tên trong `dataset/audio/`, xác nhận `ffmpeg -version` và sao lưu CSV cũ. Sau đó:
 
-Cài thêm model inference và đánh giá:
-
-```bash
-python -m pip install -r requirements-whisper.txt
-python code/batch_evaluate.py --limit 20 --model base
-python code/generate_sentence_analysis.py
-python code/generate_error_statistics.py
+```cmd
+python code\batch_evaluate_phowhisper_1000.py
+python code\generate_sentence_analysis.py --model phowhisper
+python code\generate_error_statistics.py --model phowhisper
+python code\generate_model_comparison.py
 ```
 
-`batch_evaluate.py` mặc định chọn 20 dòng đầu để đối chiếu với bộ kết quả đang lưu; chạy `--sample --limit 100 --seed 42` để làm thí nghiệm ngẫu nhiên mới, hoặc `--limit 0` để đánh giá toàn bộ metadata. Các lệnh ghi đè kết quả trong `dataset/`; sao lưu trước nếu cần giữ mốc 20 mẫu. Model Whisper tải từ mạng ở lần chạy đầu, không có trong Git. Các script phân tích cũ (`analyze_errors.py`, `analyze_vietnamese_errors.py`, `confusion_analysis.py`, `generate_report.py`) có thể chạy thêm sau batch evaluation; phần web hiện dùng `sentence_analysis.json` và `error_statistics.json`.
-
-## Kiểm thử
-
-```bash
-python -m pip install -r requirements-dev.txt
-python -m pytest tests -q
-cd web/frontend
-npm ci
-npm run lint
-npm run build
-```
-
-GitHub Actions chạy các kiểm tra trên khi thư mục dự án thay đổi. Test không gọi Whisper và không tải MP3. Mã tách âm tiết dựa trên luật/từ điển nên các nhãn lỗi âm đầu, âm chính, âm cuối và thanh điệu là phân tích gần đúng; cần đối chiếu thủ công trước khi dùng làm kết luận ngôn ngữ học.
-
-## Tác giả
-
-Vũ Văn Đạt · CSE457 Audio Processing.
+Lệnh đánh giá ghi đè CSV PhoWhisper. Kiểm tra số mẫu thành công/thất bại trước khi dùng số liệu mới.

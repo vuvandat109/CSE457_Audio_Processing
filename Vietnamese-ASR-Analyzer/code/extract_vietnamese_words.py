@@ -1,17 +1,14 @@
-from pathlib import Path
-DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
-
 import pandas as pd
 import re
 
 
 INPUT_FILE = (
-    str(DATASET_DIR / "validated.tsv")
+    r"E:\ASR_Project\dataset\validated.tsv"
 )
 
 
 OUTPUT_FILE = (
-    str(DATASET_DIR / "vietnamese_words.txt")
+    r"E:\ASR_Project\dataset\vietnamese_words.txt"
 )
 
 

@@ -20,3 +20,10 @@ dist/
 
 # Cache
 .cache/
+
+# Local runtime and downloaded binaries
+.venv/
+venv/
+web/backend/uploads/
+web/backend/ffmpeg.exe
+*.exe

@@ -1,12 +1,9 @@
-from pathlib import Path
-DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
-
 import json
 
 
-INPUT = str(DATASET_DIR / "vietnamese_dictionary.json")
+INPUT = r"E:\ASR_Project\dataset\vietnamese_dictionary.json"
 
-OUTPUT = str(DATASET_DIR / "vietnamese_dictionary_clean.json")
+OUTPUT = r"E:\ASR_Project\dataset\vietnamese_dictionary_clean.json"
 
 
 
