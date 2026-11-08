@@ -72,24 +72,12 @@ REQUIRED_COLUMNS = {
 # =====================================================
 
 MODEL_CONFIG = {
-    "whisper": {
-        "display_name": "Whisper base",
-        "input": DATASET_DIR / "asr_results.csv",
-        "output": DATASET_DIR / "sentence_analysis_whisper.json",
-    },
-    "phowhisper": {
-        "display_name": "PhoWhisper base",
-        "input": DATASET_DIR / "asr_results_phowhisper.csv",
-        "output": DATASET_DIR / "sentence_analysis_phowhisper.json",
-    },
     "wav2vec2": {
-        "display_name": "Wav2Vec2 Vietnamese",
+        "display_name": "Wav2Vec2 tiếng Việt",
         "input": DATASET_DIR / "asr_results_wav2vec2.csv",
         "output": DATASET_DIR / "sentence_analysis_wav2vec2.json",
-    }
+    },
 }
-
-LEGACY_WHISPER_OUTPUT = DATASET_DIR / "sentence_analysis.json"
 
 
 # =====================================================
@@ -290,19 +278,7 @@ def process_model(model_key, input_file, output_file):
 
     # Giữ tương thích hệ thống cũ:
     # Whisper vẫn cập nhật sentence_analysis.json
-    if model_key == "whisper":
 
-        with open(
-            LEGACY_WHISPER_OUTPUT,
-            "w",
-            encoding="utf-8"
-        ) as f:
-            json.dump(
-                output,
-                f,
-                ensure_ascii=False,
-                indent=2
-            )
 
     print("--------------------------")
     print("DONE:", model_name)
@@ -310,10 +286,9 @@ def process_model(model_key, input_file, output_file):
     print("Failed:", failed)
     print("Saved :", output_file)
 
-    if model_key == "whisper":
         print(
             "Legacy:",
-            LEGACY_WHISPER_OUTPUT
+            _OBSOLETE_WHISPER_OUTPUT
         )
 
     return {
@@ -330,123 +305,11 @@ def process_model(model_key, input_file, output_file):
 # =====================================================
 
 def main():
-
-    logging.basicConfig(
-        level=logging.INFO
-    )
-
-    parser = argparse.ArgumentParser(
-        description="Generate sentence analysis for Whisper/PhoWhisper"
-    )
-
-    parser.add_argument(
-        "--model",
-        choices=[
-            "whisper",
-            "phowhisper",
-            "wav2vec2",
-            "all"
-        ],
-        default="all",
-        help=(
-            "Model can phan tich. "
-            "Mac dinh: all"
-        )
-    )
-
-    parser.add_argument(
-        "--input",
-        type=Path,
-        default=None,
-        help=(
-            "Chi dung khi chay 1 model. "
-            "Neu bo trong se dung file mac dinh."
-        )
-    )
-
-    parser.add_argument(
-        "--output",
-        type=Path,
-        default=None,
-        help=(
-            "Chi dung khi chay 1 model. "
-            "Neu bo trong se dung file mac dinh."
-        )
-    )
-
+    parser = argparse.ArgumentParser(description="Tạo phân tích 1.000 mẫu Wav2Vec2")
+    parser.add_argument("--input", type=Path, default=MODEL_CONFIG["wav2vec2"]["input"])
+    parser.add_argument("--output", type=Path, default=MODEL_CONFIG["wav2vec2"]["output"])
     args = parser.parse_args()
-
-    summaries = []
-
-    if args.model == "all":
-
-        if args.input is not None or args.output is not None:
-            raise ValueError(
-                "--input/--output chi dung khi --model whisper, "
-                "--model phowhisper hoac --model wav2vec2"
-            )
-
-        for model_key in [
-            "whisper",
-            "phowhisper",
-            "wav2vec2"
-        ]:
-
-            config = MODEL_CONFIG[
-                model_key
-            ]
-
-            summaries.append(
-                process_model(
-                    model_key,
-                    config["input"],
-                    config["output"]
-                )
-            )
-
-    else:
-
-        config = MODEL_CONFIG[
-            args.model
-        ]
-
-        input_file = (
-            args.input
-            if args.input is not None
-            else config["input"]
-        )
-
-        output_file = (
-            args.output
-            if args.output is not None
-            else config["output"]
-        )
-
-        summaries.append(
-            process_model(
-                args.model,
-                input_file,
-                output_file
-            )
-        )
-
-    print()
-    print("==========================================")
-    print("ALL DONE")
-    print("==========================================")
-
-    for item in summaries:
-        print(
-            item["model_name"],
-            "| Total:",
-            item["total"],
-            "| Failed:",
-            item["failed"],
-            "|",
-            item["output"]
-        )
-
-    print("==========================================")
+    process_model("wav2vec2", args.input, args.output)
 
 
 if __name__ == "__main__":
