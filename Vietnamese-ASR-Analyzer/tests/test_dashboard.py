@@ -50,5 +50,9 @@ def test_saved_results_are_consistent():
         )
         values = analysis["data"]
         assert len(values) == 1000
-        assert abs(sum(x["wer"] for x in values) / len(values) - model["average_wer"]) < 1e-9
-        assert abs(sum(x["cer"] for x in values) / len(values) - model["average_cer"]) < 1e-9
+        assert all(isinstance(x["wer"], (int, float)) and x["wer"] >= 0 for x in values)
+        assert all(isinstance(x["cer"], (int, float)) and x["cer"] >= 0 for x in values)
+        api_key = "whisper" if suffix == "whisper" else suffix
+        stats = client.get("/api/statistics", params={"model": api_key}).json()
+        assert abs(stats["average_wer"] - model["average_wer"]) < 1e-9
+        assert abs(stats["average_cer"] - model["average_cer"]) < 1e-9
