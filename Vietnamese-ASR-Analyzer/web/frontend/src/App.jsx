@@ -1982,16 +1982,6 @@ export default function App() {
 
   }, [statistics]);
 
-  const sdiData = useMemo(() => {
-    const wordCounts = statistics?.word_error_counts ?? {};
-
-    return [
-      { name: "Thay thế (S)", value: Number(wordCounts.substitutions ?? 0) },
-      { name: "Mất từ (D)", value: Number(wordCounts.deletions ?? 0) },
-      { name: "Thêm từ (I)", value: Number(wordCounts.insertions ?? 0) }
-    ];
-  }, [statistics]);
-
   const modelMetricData = useMemo(() => {
     return (modelComparison?.models ?? []).map((model) => ({
       name: model.name,
@@ -2940,50 +2930,6 @@ export default function App() {
                   ))}
                 </tbody>
               </table>
-            </div>
-          </section>
-
-
-
-          {/* S / D / I CHART */}
-          <section className="section chart-section">
-            <div className="section-header">
-              <h2>🧩 Phân rã lỗi từ theo S / D / I</h2>
-              <span className="badge-count">
-                Corpus WER: {percent(statistics?.corpus_wer)}
-              </span>
-            </div>
-
-            <div className="chart-box">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={sdiData}
-                  margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
-                >
-                  <XAxis
-                    dataKey="name"
-                    tick={{ fill: "#64748b", fontSize: 12 }}
-                    interval={0}
-                  />
-                  <YAxis tick={{ fill: "#64748b", fontSize: 12 }} />
-                  <Tooltip
-                    contentStyle={{
-                      background: "#ffffff",
-                      borderRadius: "8px",
-                      boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-                      border: "1px solid #e2e8f0"
-                    }}
-                  />
-                  <Bar dataKey="value" radius={[6, 6, 0, 0]}>
-                    {sdiData.map((_, index) => (
-                      <Cell
-                        key={index}
-                        fill={CHART_COLORS[index % CHART_COLORS.length]}
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
             </div>
           </section>
 
