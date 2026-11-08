@@ -3,16 +3,10 @@
 """
 asr_runtime.py
 
-Nhan dang 1 file audio moi bang 3 model:
-- Whisper base
-- PhoWhisper base
-- Wav2Vec2 Vietnamese
-
-Model duoc lazy-load: chi load khi nguoi dung thuc su chon model do.
+Nhan dang tieng Viet bang mot mo hinh Wav2Vec2 CTC.\nModel duoc lazy-load khi nhan audio moi.
 """
 
 import os
-import gc
 import shutil
 import subprocess
 import tempfile
@@ -28,8 +22,6 @@ os.environ.setdefault(
 os.environ.setdefault("USE_TF", "0")
 os.environ.setdefault("USE_FLAX", "0")
 
-WHISPER_MODEL_NAME = "base"
-PHOWHISPER_MODEL_ID = "vinai/PhoWhisper-base"
 WAV2VEC2_MODEL_ID = "khanhld/wav2vec2-base-vietnamese-160h"
 TARGET_SAMPLE_RATE = 16000
 
@@ -54,8 +46,6 @@ if shutil.which("ffmpeg") is None:
 
 _model_cache = {}
 _model_lock = Lock()
-# Keep all models locally, but allow lower-RAM servers to evict older weights.
-_MAX_LOADED_MODELS = max(1, int(os.getenv("ASR_MAX_LOADED_MODELS", "3")))
 
 
 def _device():
@@ -64,32 +54,6 @@ def _device():
         "cuda"
         if torch.cuda.is_available()
         else "cpu"
-    )
-
-
-def _load_whisper():
-    import whisper
-
-    return whisper.load_model(
-        WHISPER_MODEL_NAME
-    )
-
-
-def _load_phowhisper():
-    import torch
-    from transformers import pipeline
-
-    device_index = (
-        0
-        if torch.cuda.is_available()
-        else -1
-    )
-
-    return pipeline(
-        task="automatic-speech-recognition",
-        model=PHOWHISPER_MODEL_ID,
-        framework="pt",
-        device=device_index
     )
 
 
@@ -133,28 +97,13 @@ def get_model(model_key: str):
         if model_key in _model_cache:
             return _model_cache[model_key]
 
-        while len(_model_cache) >= _MAX_LOADED_MODELS:
-            oldest_key = next(iter(_model_cache))
-            del _model_cache[oldest_key]
-            gc.collect()
-
         print(
             f"[ASR] Loading model: {model_key}"
         )
 
-        if model_key == "whisper":
-            loaded = _load_whisper()
-
-        elif model_key == "phowhisper":
-            loaded = _load_phowhisper()
-
-        elif model_key == "wav2vec2":
-            loaded = _load_wav2vec2()
-
-        else:
-            raise ValueError(
-                f"Unsupported model: {model_key}"
-            )
+        if model_key != "wav2vec2":
+            raise ValueError(f"Unsupported model: {model_key}")
+        loaded = _load_wav2vec2()
 
         _model_cache[model_key] = loaded
 
@@ -163,58 +112,6 @@ def get_model(model_key: str):
         )
 
         return loaded
-
-
-def transcribe_whisper(audio_path: Path) -> str:
-
-    model = get_model(
-        "whisper"
-    )
-
-    result = model.transcribe(
-        str(audio_path),
-        language="vi",
-        fp16=False,
-        temperature=0,
-        condition_on_previous_text=False
-    )
-
-    return str(
-        result.get(
-            "text",
-            ""
-        )
-    ).strip()
-
-
-def transcribe_phowhisper(audio_path: Path) -> str:
-
-    asr = get_model(
-        "phowhisper"
-    )
-
-    output = asr(
-        str(audio_path),
-        generate_kwargs={
-            "language": "vi",
-            "task": "transcribe"
-        }
-    )
-
-    if isinstance(
-        output,
-        dict
-    ):
-        return str(
-            output.get(
-                "text",
-                ""
-            )
-        ).strip()
-
-    return str(
-        output
-    ).strip()
 
 
 def convert_to_wav_16k_mono(audio_path: Path) -> Path:
@@ -379,16 +276,6 @@ def transcribe_audio(
     audio_path: Path,
     model_key: str
 ) -> str:
-
-    if model_key == "whisper":
-        return transcribe_whisper(
-            audio_path
-        )
-
-    if model_key == "phowhisper":
-        return transcribe_phowhisper(
-            audio_path
-        )
 
     if model_key == "wav2vec2":
         return transcribe_wav2vec2(
