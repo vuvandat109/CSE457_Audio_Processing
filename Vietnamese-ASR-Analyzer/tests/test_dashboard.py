@@ -135,3 +135,15 @@ def test_cached_result_recomputes_ground_truth(monkeypatch):
     assert len(calls) == 1
     assert first.json()["wer"] == 0
     assert second.json()["wer"] > 0
+
+
+def test_production_root_serves_react_html(tmp_path, monkeypatch):
+    (tmp_path / "index.html").write_text(
+        "<!doctype html><html lang='vi'><body>Wav2Vec2</body></html>",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "FRONTEND_DIST", tmp_path)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "text/html" in response.headers["content-type"]
+    assert "Wav2Vec2" in response.text
