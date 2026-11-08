@@ -569,7 +569,7 @@ function StatCard({ title, value, icon, variant = "primary" }) {
 
 
 
-function DetailPanel({ data, onClose }) {
+function DetailPanel({ data, onClose, isUpload = false }) {
 
 
 
@@ -661,7 +661,7 @@ function DetailPanel({ data, onClose }) {
 
 
 
-          <div className="audio-player-wrapper">
+          {!isUpload && <div className="audio-player-wrapper">
 
 
 
@@ -693,7 +693,7 @@ function DetailPanel({ data, onClose }) {
 
 
 
-          </div>
+          </div>}
 
 
 
@@ -3307,6 +3307,17 @@ export default function App() {
                     <WordDiffLegend />
                   )}
 
+                {testResult.has_ground_truth && (
+                  <button
+                    type="button"
+                    className="primary-btn"
+                    onClick={() => setSelected({ ...testResult, _fromUpload: true })}
+                    style={{ justifySelf: "start" }}
+                  >
+                    🔍 Xem phân tích lỗi chi tiết từng từ và âm vị
+                  </button>
+                )}
+
                 {!testResult.has_ground_truth && (
                   <div
                     style={{
@@ -4296,7 +4307,7 @@ export default function App() {
 
 
 
-        <DetailPanel data={selected} onClose={() => setSelected(null)} />
+        <DetailPanel data={selected} onClose={() => setSelected(null)} isUpload={Boolean(selected?._fromUpload)} />
 
 
 
