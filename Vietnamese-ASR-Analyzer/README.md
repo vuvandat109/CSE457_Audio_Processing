@@ -4,7 +4,7 @@
 
 ## Nguồn dữ liệu và kết quả
 
-Các tệp `dataset/asr_results.csv`, `asr_results_phowhisper.csv`, `asr_results_wav2vec2.csv` được đồng bộ từ bản `ASR_Project(1).zip` do chủ dự án cung cấp. Mỗi tệp có 1.000 dự đoán, không có dòng lỗi; tên audio và câu chuẩn khớp 1.000 dòng trong `dataset/metadata.csv`. JSON phân tích câu, thống kê và so sánh được tạo lại từ các CSV này. Đây là kiểm tra tính nhất quán của kết quả đã lưu, **không phải lần chạy suy luận model mới trong GitHub**. Audio gốc (1.000 MP3 trong ZIP) không được đẩy vào repository, nên cần đặt tại `dataset/audio/` để phát lại và tái chạy đánh giá.
+Các tệp `dataset/asr_results.csv`, `asr_results_phowhisper.csv`, `asr_results_wav2vec2.csv` được đồng bộ từ bản `ASR_Project(1).zip` do chủ dự án cung cấp. Mỗi tệp có 1.000 dự đoán, không có dòng lỗi; tên audio và câu chuẩn khớp 1.000 dòng trong `dataset/metadata.csv`. JSON phân tích câu, thống kê và so sánh được tạo lại từ các CSV này. Đây là kiểm tra tính nhất quán của kết quả đã lưu, **không phải lần chạy suy luận model mới trong GitHub**. Audio gốc gồm 1.000 MP3 đã được đẩy vào `dataset/audio/`, có thể phát lại và dùng cho việc đánh giá lại. Các số liệu tổng hợp vẫn là kết quả CSV đã lưu, chưa phải phép suy luận lại toàn bộ từ các checkpoint trong GitHub.
 
 | Model | WER trung bình theo câu | CER trung bình theo câu | Corpus WER |
 | --- | ---: | ---: | ---: |
@@ -55,3 +55,20 @@ python code\generate_model_comparison.py
 ```
 
 Lệnh đánh giá ghi đè CSV PhoWhisper. Kiểm tra số mẫu thành công/thất bại trước khi dùng số liệu mới.
+
+## Kiểm thử chức năng website và nhận dạng thực tế
+
+Chạy API từ thư mục `Vietnamese-ASR-Analyzer/web/backend` với `python -m uvicorn main:app --reload`, sau đó chạy frontend từ `web/frontend` với `npm ci` và `npm run dev`. Mở `http://localhost:5173`, chọn lần lượt Whisper / PhoWhisper / Wav2Vec2, tải lên một MP3 trong `dataset/audio/`, nhập câu gốc nếu muốn WER/CER, và kiểm tra câu dự đoán cùng thống kê lỗi.
+
+Kiểm thử API không tải model (chạy trong CI):
+```cmd
+python -m pip install -r requirements-dev.txt
+python -m pytest tests -q
+```
+
+Kiểm thử suy luận **thật** dùng chung một MP3, tải model nếu chưa được lưu cục bộ:
+```cmd
+python -m pip install -r requirements-asr.txt
+python code\smoke_test_three_models.py
+```
+Kết quả thử một file được lưu tại `dataset/smoke_test_three_models.json`. Đây không phải đánh giá toàn bộ 1.000 mẫu. Không đưa kết quả của một câu vào báo cáo như độ chính xác trung bình.
