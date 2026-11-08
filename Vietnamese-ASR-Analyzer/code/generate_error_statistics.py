@@ -2,19 +2,8 @@
 
 """
 generate_error_statistics.py
-
-Vietnamese ASR Error Statistics V17 - MULTI MODEL
-
-Tao thong ke rieng cho:
-- Whisper base
-- PhoWhisper base
-
-Output:
-- dataset/error_statistics_whisper.json
-- dataset/error_statistics_phowhisper.json
-
-Tuong thich cu:
-- dataset/error_statistics.json = thong ke Whisper
+Tính thống kê lỗi nhận dạng tiếng Việt chỉ cho Wav2Vec2.
+Sử dụng 1.000 dự đoán trong dataset/asr_results_wav2vec2.csv.
 """
 
 import argparse
@@ -431,7 +420,6 @@ def generate_for_model(model_key: str):
             indent=2
         )
 
-    # He thong cu van dung Whisper
 
 
     print("Total audio:", len(samples))
