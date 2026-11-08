@@ -2203,3 +2203,35 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 .file-badge { background: #edf5fc; color: #165581; }
 .table-container thead, .phoneme-table th { background: #edf4fa; }
 .section form { background: #fff; }
+
+
+/* Center the audio analysis dialog without changing its content. */
+.drawer-overlay {
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  overflow: hidden;
+}
+.drawer {
+  width: min(900px, 100%);
+  height: auto;
+  max-height: calc(100dvh - 44px);
+  margin: auto;
+  overflow-y: auto;
+  border: 1px solid #d9e3ec;
+  border-radius: 15px;
+  box-shadow: 0 24px 80px rgba(10, 29, 49, .23);
+  animation: dialogAppear .2s ease-out;
+}
+@keyframes dialogAppear {
+  from { opacity: 0; transform: translateY(12px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 640px) {
+  .drawer-overlay { padding: 10px; }
+  .drawer {
+    width: 100%;
+    max-height: calc(100dvh - 20px);
+    border-radius: 12px;
+  }
+}
