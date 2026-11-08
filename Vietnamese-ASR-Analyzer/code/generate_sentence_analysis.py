@@ -2,24 +2,9 @@
 
 """
 generate_sentence_analysis.py
-
-Vietnamese ASR Sentence Analysis V14 - MULTI MODEL
-
-Ho tro:
-- Whisper base
-- PhoWhisper base
-- Chay rieng tung model hoac ca hai
-
-Input:
-- dataset/asr_results.csv
-- dataset/asr_results_phowhisper.csv
-
-Output:
-- dataset/sentence_analysis_whisper.json
-- dataset/sentence_analysis_phowhisper.json
-
-Tuong thich cu:
-- dataset/sentence_analysis.json van duoc cap nhat bang ket qua Whisper
+Phân tích câu từ dự đoán Wav2Vec2; không chạy lại model.
+Đầu vào: dataset/asr_results_wav2vec2.csv
+Đầu ra: dataset/sentence_analysis_wav2vec2.json
 """
 
 import argparse
@@ -276,20 +261,11 @@ def process_model(model_key, input_file, output_file):
             indent=2
         )
 
-    # Giữ tương thích hệ thống cũ:
-    # Whisper vẫn cập nhật sentence_analysis.json
-
-
     print("--------------------------")
     print("DONE:", model_name)
     print("Total :", len(results))
     print("Failed:", failed)
     print("Saved :", output_file)
-
-        print(
-            "Legacy:",
-            _OBSOLETE_WHISPER_OUTPUT
-        )
 
     return {
         "model": model_key,
