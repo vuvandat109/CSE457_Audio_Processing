@@ -24,11 +24,6 @@ os.environ.setdefault(
     "1"
 )
 
-import librosa
-import numpy as np
-import torch
-
-
 WHISPER_MODEL_NAME = "base"
 PHOWHISPER_MODEL_ID = "vinai/PhoWhisper-base"
 WAV2VEC2_MODEL_ID = "khanhld/wav2vec2-base-vietnamese-160h"
@@ -58,6 +53,7 @@ _model_lock = Lock()
 
 
 def _device():
+    import torch
     return torch.device(
         "cuda"
         if torch.cuda.is_available()
@@ -74,6 +70,7 @@ def _load_whisper():
 
 
 def _load_phowhisper():
+    import torch
     from transformers import pipeline
 
     device_index = (
@@ -280,6 +277,9 @@ def convert_to_wav_16k_mono(audio_path: Path) -> Path:
 
 
 def transcribe_wav2vec2(audio_path: Path) -> str:
+    import librosa
+    import numpy as np
+    import torch
 
     bundle = get_model(
         "wav2vec2"
