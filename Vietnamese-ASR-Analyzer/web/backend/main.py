@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import json
+import hashlib
+from collections import OrderedDict
+from threading import Lock
 import os
 import tempfile
 import time
@@ -38,6 +41,32 @@ MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "50"))
 if MAX_UPLOAD_MB <= 0:
     raise ValueError("MAX_UPLOAD_MB phải lớn hơn 0")
 MAX_UPLOAD_BYTES = MAX_UPLOAD_MB * 1024 * 1024
+
+# Cache only the transcription (never raw audio); scores are recalculated per
+# submitted ground truth. A bounded process-local cache prevents repeated CPU
+# inference when the user tests the same clip and model again.
+_ASR_RESPONSE_CACHE = OrderedDict()
+_ASR_RESPONSE_CACHE_LOCK = Lock()
+_ASR_RESPONSE_CACHE_LIMIT = 32
+
+
+def _cached_prediction(model, content):
+    key = (model, hashlib.sha256(content).hexdigest())
+    with _ASR_RESPONSE_CACHE_LOCK:
+        if key in _ASR_RESPONSE_CACHE:
+            _ASR_RESPONSE_CACHE.move_to_end(key)
+            return _ASR_RESPONSE_CACHE[key]
+    return None
+
+
+def _save_prediction(model, content, prediction):
+    key = (model, hashlib.sha256(content).hexdigest())
+    with _ASR_RESPONSE_CACHE_LOCK:
+        _ASR_RESPONSE_CACHE[key] = prediction
+        _ASR_RESPONSE_CACHE.move_to_end(key)
+        while len(_ASR_RESPONSE_CACHE) > _ASR_RESPONSE_CACHE_LIMIT:
+            _ASR_RESPONSE_CACHE.popitem(last=False)
+
 
 BASE_DIR = Path(
     os.getenv(
@@ -450,11 +479,17 @@ async def test_audio(
 
         started = time.perf_counter()
 
-        prediction = await run_in_threadpool(
-            transcribe_audio,
-            temp_path,
-            model
-        )
+        cached_prediction = _cached_prediction(model, content)
+        cache_hit = cached_prediction is not None
+        if cache_hit:
+            prediction = cached_prediction
+        else:
+            prediction = await run_in_threadpool(
+                transcribe_audio,
+                temp_path,
+                model
+            )
+            _save_prediction(model, content, prediction)
 
         processing_seconds = (
             time.perf_counter()
@@ -471,6 +506,7 @@ async def test_audio(
             "model": model,
             "model_name": MODEL_NAMES[model],
             "prediction": prediction,
+            "cached": cache_hit,
             "ground_truth": reference,
             "processing_seconds": round(
                 processing_seconds,
