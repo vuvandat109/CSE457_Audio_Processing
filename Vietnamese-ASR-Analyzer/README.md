@@ -96,3 +96,24 @@ python code\report_three_models_1000.py --input-dir dataset/evaluation_full_1000
 ```
 
 Mở `dataset/evaluation_full_1000/REPORT.md`, `verified_comparison.json`, `chart_mean_wer.svg` và `chart_mean_cer.svg`. Nếu thiếu một bản ghi hoặc có lỗi, chương trình **không cho tạo báo cáo xác minh đầy đủ**. CSV lịch sử cho dashboard được giữ nguyên. Không đưa kết quả chạy thử 5 mẫu vào báo cáo chính thức. Khi chia sẻ, lưu kết quả đầu ra có nguồn gốc, thông tin checkpoint, câu chuẩn và lỗi thay vì chỉ chia sẻ số liệu tổng hợp.
+
+## Triển khai Docker / Render
+
+Có Dockerfile multi-stage (`Dockerfile`) build giao diện React và backend FastAPI
+trong cùng image, đồng thời cài FFmpeg và cả ba engine nhận dạng tiếng nói.
+Dịch vụ Render được mô tả ở `../render.yaml` (root repository).
+
+**Không tự động tạo dịch vụ trả phí chỉ bằng git push.** Blueprint cần được
+lập kế hoạch và người dùng xác nhận workspace, cấu hình chi phí trước khi áp dụng.
+Chi tiết: [Hướng dẫn Render Docker](docs/RENDER_DOCKER.md).
+
+Tại thư mục `Vietnamese-ASR-Analyzer`, chạy thử Docker:
+
+```cmd
+docker build -t vietnamese-asr-analyzer:local .
+docker run --rm -p 10000:10000 vietnamese-asr-analyzer:local
+```
+
+Truy cập `http://localhost:10000`, `/health` và `/ready`.
+Suy luận lần đầu tải checkpoint và có thể chậm; Docker build thành công
+không đảm bảo cả ba mô hình đã thực sự được suy luận trên Render.
