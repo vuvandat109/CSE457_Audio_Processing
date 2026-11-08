@@ -1,0 +1,14 @@
+# Direct dependencies for isolated CPU container. Not a replacement for Windows freeze.
+fastapi==0.115.12
+uvicorn==0.34.2
+python-multipart==0.0.20
+jiwer==4.0.0
+numpy==2.2.6
+librosa==0.11.0
+soundfile==0.13.1
+openai-whisper==20250625
+transformers==4.51.3
+huggingface-hub==0.30.2
+accelerate==1.6.0
+sentencepiece==0.2.0
+# torch/torchaudio are installed as matched CPU wheels in Dockerfile.

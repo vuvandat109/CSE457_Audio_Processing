@@ -1,0 +1,143 @@
+{
+  "models": [
+    {
+      "key": "whisper_base",
+      "name": "Whisper base",
+      "file": "asr_results.csv",
+      "total_audio": 1000,
+      "valid_wer_samples": 1000,
+      "valid_cer_samples": 1000,
+      "average_wer": 0.4897915528915529,
+      "average_cer": 0.26444795610045413,
+      "corpus_wer": 0.4517026633099245,
+      "substitutions": 2954,
+      "deletions": 102,
+      "insertions": 353,
+      "hits": 4491,
+      "reference_words": 7547,
+      "hallucination_count": 13,
+      "hallucination_samples": [
+        {
+          "audio": "common_voice_vi_21833241.mp3",
+          "ground_truth": "kịch nghệ",
+          "prediction": "Khi kinh nghe",
+          "wer": 1.5
+        },
+        {
+          "audio": "common_voice_vi_24331624.mp3",
+          "ground_truth": "Sao nó vẫn về được nhà con thanh",
+          "prediction": "Chẳng nằm vào nguơi đu tên nhé à compag.",
+          "wer": 1.125
+        },
+        {
+          "audio": "common_voice_vi_42788134.mp3",
+          "ground_truth": "phản xạ",
+          "prediction": "Hãy subscribe cho kênh Ghiền Mì Gõ Để không bỏ lỡ những video hấp dẫn.",
+          "wer": 7.5
+        },
+        {
+          "audio": "common_voice_vi_24144225.mp3",
+          "ground_truth": "Nửa giờ sau",
+          "prediction": "Nếu tì ra, chào!",
+          "wer": 1.3333333333333333
+        },
+        {
+          "audio": "common_voice_vi_35487089.mp3",
+          "ground_truth": "Anh chàng lắc đầu",
+          "prediction": "Cảm ơn các bạn ạ",
+          "wer": 1.25
+        },
+        {
+          "audio": "common_voice_vi_40332659.mp3",
+          "ground_truth": "Kiếm mãi, nghi hoài, hay ghen bóng gió",
+          "prediction": "9.5, 2,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4",
+          "wer": 14.0
+        },
+        {
+          "audio": "common_voice_vi_25092443.mp3",
+          "ground_truth": "ôi con ơi con mở mắt rồi sao",
+          "prediction": "ƯỜI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI, QUO NỒI",
+          "wer": 7.875
+        },
+        {
+          "audio": "common_voice_vi_22416756.mp3",
+          "ground_truth": "Ôi! tình mẫu tử.",
+          "prediction": "Bây giờ mình sẽ nhìn thấy những cái gì đó.",
+          "wer": 2.5
+        },
+        {
+          "audio": "common_voice_vi_30946618.mp3",
+          "ground_truth": "Vợ tôi cũng bị một chiếc xe như vậy",
+          "prediction": "tự tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình tình t",
+          "wer": 12.444444444444445
+        },
+        {
+          "audio": "common_voice_vi_24142043.mp3",
+          "ground_truth": "Điện ảnh",
+          "prediction": "Đi của thánh",
+          "wer": 1.5
+        },
+        {
+          "audio": "common_voice_vi_23925108.mp3",
+          "ground_truth": "Sao như vậy được",
+          "prediction": "xam nhu và ilh ạ.",
+          "wer": 1.25
+        },
+        {
+          "audio": "common_voice_vi_25226325.mp3",
+          "ground_truth": "Thế này phải tìm thầy Cao tay hơn",
+          "prediction": "Đi nào thì tôi sẽ cho đến với anh",
+          "wer": 1.125
+        },
+        {
+          "audio": "common_voice_vi_23933003.mp3",
+          "ground_truth": "Qua những cái cây cổ thụ",
+          "prediction": "Gòa nhịnh kết kết kết của tu",
+          "wer": 1.1666666666666667
+        }
+      ]
+    },
+    {
+      "key": "phowhisper_base",
+      "name": "PhoWhisper base",
+      "file": "asr_results_phowhisper.csv",
+      "total_audio": 1000,
+      "valid_wer_samples": 1000,
+      "valid_cer_samples": 1000,
+      "average_wer": 0.10574657009657008,
+      "average_cer": 0.04750357286558165,
+      "corpus_wer": 0.09778720021200477,
+      "substitutions": 711,
+      "deletions": 9,
+      "insertions": 18,
+      "hits": 6827,
+      "reference_words": 7547,
+      "hallucination_count": 0,
+      "hallucination_samples": []
+    },
+    {
+      "key": "wav2vec2_vietnamese",
+      "name": "Wav2Vec2 Vietnamese",
+      "file": "asr_results_wav2vec2.csv",
+      "total_audio": 1000,
+      "valid_wer_samples": 1000,
+      "valid_cer_samples": 1000,
+      "average_wer": 0.0832184065934066,
+      "average_cer": 0.03035061378902017,
+      "corpus_wer": 0.08625944083741884,
+      "substitutions": 631,
+      "deletions": 13,
+      "insertions": 7,
+      "hits": 6903,
+      "reference_words": 7547,
+      "hallucination_count": 0,
+      "hallucination_samples": []
+    }
+  ],
+  "best": {
+    "average_wer": "wav2vec2_vietnamese",
+    "average_cer": "wav2vec2_vietnamese",
+    "corpus_wer": "wav2vec2_vietnamese",
+    "hallucination_count": "phowhisper_base"
+  }
+}

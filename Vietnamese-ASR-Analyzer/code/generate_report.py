@@ -1,6 +1,3 @@
-from pathlib import Path
-DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
-
 import pandas as pd
 import json
 
@@ -9,17 +6,17 @@ import json
 # Đường dẫn dữ liệu
 # ==========================================
 
-file_asr = str(DATASET_DIR / "asr_results.csv")
+file_asr = r"E:\ASR_Project\dataset\asr_results.csv"
 
-file_error = str(DATASET_DIR / "error_analysis.csv")
+file_error = r"E:\ASR_Project\dataset\error_analysis.csv"
 
 file_vietnamese_error = (
-    str(DATASET_DIR / "vietnamese_error_analysis.csv")
+    r"E:\ASR_Project\dataset\vietnamese_error_analysis.csv"
 )
 
 
 file_output = (
-    str(DATASET_DIR / "summary_report.json")
+    r"E:\ASR_Project\dataset\summary_report.json"
 )
 
 

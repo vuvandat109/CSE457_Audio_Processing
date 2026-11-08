@@ -1,17 +1,14 @@
-from pathlib import Path
-DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
-
 import pandas as pd
 from collections import Counter
 
 
-input_file = str(DATASET_DIR / "vietnamese_error_analysis.csv")
+input_file = r"E:\ASR_Project\dataset\vietnamese_error_analysis.csv"
 
-output_tone = str(DATASET_DIR / "tone_confusion.csv")
-output_initial = str(DATASET_DIR / "initial_confusion.csv")
-output_medial = str(DATASET_DIR / "medial_confusion.csv")
-output_nucleus = str(DATASET_DIR / "nucleus_confusion.csv")
-output_coda = str(DATASET_DIR / "coda_confusion.csv")
+output_tone = r"E:\ASR_Project\dataset\tone_confusion.csv"
+output_initial = r"E:\ASR_Project\dataset\initial_confusion.csv"
+output_medial = r"E:\ASR_Project\dataset\medial_confusion.csv"
+output_nucleus = r"E:\ASR_Project\dataset\nucleus_confusion.csv"
+output_coda = r"E:\ASR_Project\dataset\coda_confusion.csv"
 
 
 df = pd.read_csv(

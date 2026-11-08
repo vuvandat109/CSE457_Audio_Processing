@@ -1,60 +1,237 @@
-"""Run Whisper over a reproducible subset of Common Voice clips."""
-import argparse
 import os
-import shutil
-from pathlib import Path
 import pandas as pd
-from jiwer import cer, wer
+import whisper
+
+from jiwer import wer, cer
 from text_normalizer import normalize_vietnamese_text
 
-DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--metadata", type=Path, default=DATASET_DIR / "metadata.csv")
-    parser.add_argument("--audio-dir", type=Path, default=DATASET_DIR / "audio")
-    parser.add_argument("--output", type=Path, default=DATASET_DIR / "asr_results.csv")
-    parser.add_argument("--limit", type=int, default=20, help="0 evaluates all rows")
-    parser.add_argument("--sample", action="store_true", help="sample with seed instead of first rows")
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--model", default=os.getenv("WHISPER_MODEL", "base"))
-    args = parser.parse_args()
-    if shutil.which("ffmpeg") is None:
-        parser.error("FFmpeg is required. Install it and add its bin directory to PATH.")
-    if args.limit < 0:
-        parser.error("--limit must be nonnegative")
-    df = pd.read_csv(args.metadata, encoding="utf-8-sig")
-    if not {"audio", "text"}.issubset(df.columns):
-        parser.error("metadata must contain audio,text columns")
-    if args.limit:
-        df = df.sample(n=min(args.limit, len(df)), random_state=args.seed) if args.sample else df.head(args.limit)
-    if df.empty:
-        parser.error("No metadata rows selected")
-    if not args.audio_dir.is_dir():
-        parser.error(f"Audio directory missing: {args.audio_dir}")
-    import whisper
-    model = whisper.load_model(args.model)
-    results = []
-    for i, row in enumerate(df.itertuples(index=False), 1):
-        name = str(row.audio)
-        audio_path = args.audio_dir / Path(name).name
-        try:
-            if not audio_path.is_file():
-                raise FileNotFoundError(audio_path)
-            prediction = model.transcribe(str(audio_path), language="vi", fp16=False)["text"].strip()
-            reference = str(row.text)
-            ref = normalize_vietnamese_text(reference)
-            hyp = normalize_vietnamese_text(prediction)
-            results.append({"audio": name, "ground_truth": reference, "prediction": prediction,
-                            "wer": wer(ref, hyp), "cer": cer(ref, hyp), "error": ""})
-            print(f"[{i}/{len(df)}] {name}: WER={results[-1]['wer']:.4f}")
-        except Exception as exc:
-            print(f"[{i}/{len(df)}] {name}: {exc}")
-            results.append({"audio": name, "ground_truth": str(row.text), "prediction": "",
-                            "wer": None, "cer": None, "error": str(exc)})
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(results).to_csv(args.output, index=False, encoding="utf-8-sig")
-    print(f"Saved {len(results)} rows to {args.output}")
+# =====================================================
+# DUONG DAN
+# =====================================================
 
-if __name__ == "__main__":
-    main()
+metadata_file = r"E:\ASR_Project\dataset\metadata.csv"
+audio_folder = r"E:\ASR_Project\dataset\audio"
+
+# TEST RIENG - KHONG GHI DE FILE 1000 MAU
+output_file = r"E:\ASR_Project\dataset\asr_results_new.csv"
+
+# =====================================================
+# FFMPEG
+# =====================================================
+
+os.environ["PATH"] += (
+    os.pathsep
+    + r"E:\ffmpeg-2026-09-07-git-ecc7eb519e-essentials_build\bin"
+)
+
+
+# =====================================================
+# LOAD DATA
+# =====================================================
+
+df = pd.read_csv(
+    metadata_file,
+    encoding="utf-8-sig"
+)
+
+
+# =====================================================
+# TEST 20 MAU TRUOC
+# =====================================================
+
+TEST_LIMIT = 1000
+
+df = df.head(TEST_LIMIT)
+
+print("==============================")
+print("So file se test:", len(df))
+print("==============================")
+
+
+# =====================================================
+# LOAD WHISPER
+# =====================================================
+
+print("Dang load Whisper...")
+model = whisper.load_model("base")
+print("Da load Whisper.")
+
+
+# =====================================================
+# RESULTS
+# =====================================================
+
+results = []
+
+
+# =====================================================
+# CHAY TUNG AUDIO
+# =====================================================
+
+for index, row in df.iterrows():
+
+    audio_name = str(row["audio"]).strip()
+    ground_truth = str(row["text"]).strip()
+    audio_path = os.path.join(audio_folder, audio_name)
+
+    print("\n==============================")
+    print(f"[{index + 1}/{len(df)}]")
+    print("Audio:", audio_name)
+    print("Path:", audio_path)
+
+    # =================================================
+    # KIEM TRA FILE AUDIO
+    # =================================================
+
+    if not os.path.exists(audio_path):
+
+        error_message = f"Khong tim thay audio: {audio_path}"
+
+        print("LOI:", error_message)
+
+        results.append({
+            "audio": audio_name,
+            "ground_truth": ground_truth,
+            "prediction": "",
+            "wer": "",
+            "cer": "",
+            "error": error_message
+        })
+
+        continue
+
+    try:
+
+        # =============================================
+        # WHISPER TRANSCRIBE
+        # =============================================
+
+        result = model.transcribe(
+            audio_path,
+            language="vi",
+            fp16=False,
+            temperature=0,
+            condition_on_previous_text=False
+        )
+
+        prediction = str(
+            result.get("text", "")
+        ).strip()
+
+        # =============================================
+        # NORMALIZE
+        # =============================================
+
+        gt_norm = normalize_vietnamese_text(
+            ground_truth
+        )
+
+        pred_norm = normalize_vietnamese_text(
+            prediction
+        )
+
+        # =============================================
+        # METRICS
+        # =============================================
+
+        current_wer = wer(
+            gt_norm,
+            pred_norm
+        )
+
+        current_cer = cer(
+            gt_norm,
+            pred_norm
+        )
+
+        # =============================================
+        # PRINT
+        # =============================================
+
+        print("GT :", ground_truth)
+        print("ASR:", prediction)
+        print("GT Normalize :", gt_norm)
+        print("ASR Normalize:", pred_norm)
+        print("WER:", round(current_wer, 4))
+        print("CER:", round(current_cer, 4))
+
+        # =============================================
+        # SAVE RESULT
+        # =============================================
+
+        results.append({
+            "audio": audio_name,
+            "ground_truth": ground_truth,
+            "prediction": prediction,
+            "wer": current_wer,
+            "cer": current_cer,
+            "error": ""
+        })
+
+    except Exception as e:
+
+        print("LOI:", e)
+
+        results.append({
+            "audio": audio_name,
+            "ground_truth": ground_truth,
+            "prediction": "",
+            "wer": "",
+            "cer": "",
+            "error": str(e)
+        })
+
+
+# =====================================================
+# SAVE CSV
+# =====================================================
+
+result_df = pd.DataFrame(results)
+
+result_df.to_csv(
+    output_file,
+    index=False,
+    encoding="utf-8-sig"
+)
+
+
+# =====================================================
+# SUMMARY
+# =====================================================
+
+print("\n==============================")
+print("HOAN TAT")
+print("==============================")
+
+print("Tong mau:", len(result_df))
+
+success_df = result_df[
+    result_df["wer"] != ""
+].copy()
+
+if len(success_df) > 0:
+
+    success_df["wer"] = pd.to_numeric(
+        success_df["wer"],
+        errors="coerce"
+    )
+
+    success_df["cer"] = pd.to_numeric(
+        success_df["cer"],
+        errors="coerce"
+    )
+
+    print(
+        "WER trung binh:",
+        success_df["wer"].mean()
+    )
+
+    print(
+        "CER trung binh:",
+        success_df["cer"].mean()
+    )
+
+print("Da luu ket qua tai:")
+print(output_file)
+print("==============================")
