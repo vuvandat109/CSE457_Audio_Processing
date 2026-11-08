@@ -24,6 +24,9 @@ os.environ.setdefault(
     "1"
 )
 
+os.environ.setdefault("USE_TF", "0")
+os.environ.setdefault("USE_FLAX", "0")
+
 WHISPER_MODEL_NAME = "base"
 PHOWHISPER_MODEL_ID = "vinai/PhoWhisper-base"
 WAV2VEC2_MODEL_ID = "khanhld/wav2vec2-base-vietnamese-160h"
@@ -32,14 +35,14 @@ TARGET_SAMPLE_RATE = 16000
 
 # FFMPEG: uu tien PATH he thong, neu khong co thi thu duong dan user dang dung
 KNOWN_FFMPEG_DIRS = [
-    Path(
-        r"E:\ffmpeg-2026-09-07-git-ecc7eb519e-essentials_build\bin"
-    )
+    Path(__file__).resolve().parent,  # backend/ffmpeg.exe on user's computer
+    Path(r"E:\ASR_Project\web\backend"),  # Existing legacy installation
+    Path(r"E:\ffmpeg-2026-09-07-git-ecc7eb519e-essentials_build\bin"),
 ]
 
 if shutil.which("ffmpeg") is None:
     for folder in KNOWN_FFMPEG_DIRS:
-        if folder.exists():
+        if (folder / ("ffmpeg.exe" if os.name == "nt" else "ffmpeg")).is_file():
             os.environ["PATH"] = (
                 str(folder)
                 + os.pathsep
@@ -82,6 +85,7 @@ def _load_phowhisper():
     return pipeline(
         task="automatic-speech-recognition",
         model=PHOWHISPER_MODEL_ID,
+        framework="pt",
         device=device_index
     )
 
