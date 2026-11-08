@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# One public service: Vite/React static build + Python/FastAPI + all three ASR engines.
+# One public service: Vite/React static build + Python/FastAPI + Wav2Vec2 ASR engine.
 FROM node:22-bookworm-slim AS frontend
 WORKDIR /frontend
 COPY web/frontend/package*.json ./
@@ -24,7 +24,7 @@ WORKDIR /app
 # The matching CPU-only PyTorch wheels avoid pulling multi-GB CUDA dependencies.
 RUN python -m pip install --upgrade pip && \
     python -m pip install --index-url https://download.pytorch.org/whl/cpu \
-      torch==2.5.1 torchaudio==2.5.1
+      torch==2.5.1
 COPY web/backend/requirements.docker.txt /tmp/requirements.docker.txt
 RUN python -m pip install -r /tmp/requirements.docker.txt
 RUN useradd --create-home --uid 10001 asr
