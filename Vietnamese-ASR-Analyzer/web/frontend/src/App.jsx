@@ -117,13 +117,13 @@ function DetailPanel({ data, onClose }) {
         <div className="drawer-body">
           {/* Trình phát Audio */}
           <div className="audio-player-wrapper">
-            <audio
+            {data.audio_available ? <audio
               controls
               className="audio-player"
               src={`${API}/audio/${encodeURIComponent(data.audio ?? "")}`}
             >
               Trình duyệt không hỗ trợ phát âm thanh.
-            </audio>
+            </audio> : <p>Audio gốc chưa có trong bản GitHub. Xem README để tải tập Common Voice và đặt tệp vào dataset/audio.</p>}
           </div>
 
           {/* Chỉ số WER / CER */}
@@ -363,7 +363,7 @@ export default function App() {
         <div className="sidebar-footer">
           <div className="model-badge">
             <span className="dot"></span>
-            <span>Whisper VN v3 • Sẵn sàng</span>
+            <span>OpenAI Whisper base • Kết quả lưu sẵn</span>
           </div>
         </div>
       </aside>

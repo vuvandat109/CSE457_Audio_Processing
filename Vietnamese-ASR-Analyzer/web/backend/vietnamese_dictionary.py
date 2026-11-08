@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 
 
 
@@ -8,7 +9,7 @@ import os
 # =====================================
 
 
-DICT_FILE = r"E:\ASR_Project\dataset\vietnamese_dictionary_clean.json"
+DICT_FILE = Path(__file__).resolve().parents[2] / "dataset" / "vietnamese_dictionary_clean.json"
 
 
 

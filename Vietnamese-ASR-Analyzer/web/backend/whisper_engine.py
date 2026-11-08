@@ -1,66 +1,20 @@
-import whisper
+"""Optional offline Whisper inference; the dashboard reads saved results."""
 import os
+import shutil
+from pathlib import Path
 
-
-# ==============================
-# SET FFMPEG PATH
-# ==============================
-
-FFMPEG_PATH = (
-    r"E:\ffmpeg-2026-09-07-git-ecc7eb519e-essentials_build\bin"
-)
-
-
-os.environ["PATH"] += os.pathsep + FFMPEG_PATH
-
-
-
-# ==============================
-# LOAD MODEL
-# ==============================
-
-print("Loading Whisper model...")
-
-
-model = whisper.load_model("small")
-
-
-print("Whisper model loaded")
-
-
-
+_model = None
 
 def transcribe_audio(audio_path):
-
-
-    if not os.path.exists(audio_path):
-
-        raise FileNotFoundError(
-            "Audio file not found"
-        )
-
-
-    result = model.transcribe(
-
-        audio_path,
-
-        language="vi",
-
-        task="transcribe",
-
-        fp16=False,
-
-        temperature=0,
-
-        condition_on_previous_text=False,
-
-        initial_prompt="Đây là đoạn hội thoại tiếng Việt."
-
-    )
-
-
-    print("WHISPER RESULT:")
-    print(result)
-
-
+    global _model
+    audio_path = Path(audio_path)
+    if not audio_path.is_file():
+        raise FileNotFoundError(audio_path)
+    if shutil.which("ffmpeg") is None:
+        raise RuntimeError("FFmpeg is not on PATH")
+    if _model is None:
+        import whisper
+        _model = whisper.load_model(os.getenv("WHISPER_MODEL", "base"))
+    result = _model.transcribe(str(audio_path), language="vi", fp16=False,
+                               temperature=0, condition_on_previous_text=False)
     return result["text"].strip()

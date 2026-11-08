@@ -1,15 +1,19 @@
-import os
+from pathlib import Path
+DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
 
-# Them FFmpeg vao PATH cho Python
-os.environ["PATH"] += os.pathsep + r"E:\ffmpeg-2026-09-07-git-ecc7eb519e-essentials_build\bin"
+import os
+import shutil
+
+if shutil.which("ffmpeg") is None:
+    raise SystemExit("Install FFmpeg and add it to PATH")
 
 import whisper
 
 print("Dang tai model Whisper...")
 
-model = whisper.load_model("base")
+model = whisper.load_model(os.getenv("WHISPER_MODEL", "base"))
 
-audio_folder = r"E:\ASR_Project\dataset\audio"
+audio_folder = str(DATASET_DIR / "audio")
 
 files = [
     f for f in os.listdir(audio_folder)

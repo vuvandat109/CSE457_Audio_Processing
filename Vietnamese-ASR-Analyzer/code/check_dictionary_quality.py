@@ -1,10 +1,13 @@
+from pathlib import Path
+DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
+
 import json
 import unicodedata
 
 
 
 DICT_FILE = (
-    r"E:\ASR_Project\dataset\vietnamese_dictionary.json"
+    str(DATASET_DIR / "vietnamese_dictionary.json")
 )
 
 

@@ -1,11 +1,14 @@
+from pathlib import Path
+DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
+
 import pandas as pd
 import jiwer
 
 from text_normalizer import normalize_vietnamese_text
 
 
-input_file = r"E:\ASR_Project\dataset\asr_results.csv"
-output_file = r"E:\ASR_Project\dataset\error_analysis.csv"
+input_file = str(DATASET_DIR / "asr_results.csv")
+output_file = str(DATASET_DIR / "error_analysis.csv")
 
 df = pd.read_csv(input_file, encoding="utf-8-sig")
 

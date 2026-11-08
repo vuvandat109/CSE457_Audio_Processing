@@ -1,9 +1,12 @@
+from pathlib import Path
+DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
+
 import json
 import sys
 
 
 sys.path.append(
-    r"E:\ASR_Project\web\backend"
+    str(Path(__file__).resolve().parents[1] / "web" / "backend")
 )
 
 
@@ -12,10 +15,10 @@ from vietnamese_phoneme import split_syllable
 
 
 
-WORD_FILE = r"E:\ASR_Project\dataset\vietnamese_words.txt"
+WORD_FILE = str(DATASET_DIR / "vietnamese_words.txt")
 
 
-OUTPUT_FILE = r"E:\ASR_Project\dataset\vietnamese_dictionary.json"
+OUTPUT_FILE = str(DATASET_DIR / "vietnamese_dictionary.json")
 
 
 

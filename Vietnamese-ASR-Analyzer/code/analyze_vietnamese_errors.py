@@ -1,3 +1,6 @@
+from pathlib import Path
+DATASET_DIR = Path(__file__).resolve().parents[1] / "dataset"
+
 import pandas as pd
 import jiwer
 
@@ -5,8 +8,8 @@ from text_normalizer import normalize_vietnamese_text
 from vietnamese_error_analyzer import analyze_word_error
 
 
-input_file = r"E:\ASR_Project\dataset\asr_results.csv"
-output_file = r"E:\ASR_Project\dataset\vietnamese_error_analysis.csv"
+input_file = str(DATASET_DIR / "asr_results.csv")
+output_file = str(DATASET_DIR / "vietnamese_error_analysis.csv")
 
 
 df = pd.read_csv(

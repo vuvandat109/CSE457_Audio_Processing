@@ -104,7 +104,7 @@ AUDIO_DIR = BASE_DIR / "audio"
 
 app.mount(
     "/audio",
-    StaticFiles(directory=AUDIO_DIR),
+    StaticFiles(directory=AUDIO_DIR, check_dir=False),
     name="audio"
 )
 
@@ -825,6 +825,8 @@ def audio_list(
 
                 x.get("wer"),
 
+                "audio_available": (AUDIO_DIR / Path(str(x.get("audio", ""))).name).is_file(),
+
 
 
                 "cer":
@@ -896,4 +898,4 @@ def audio_detail(audio:str):
 
 
 
-    return item
+    return {**item, "audio_available": (AUDIO_DIR / Path(audio).name).is_file()}

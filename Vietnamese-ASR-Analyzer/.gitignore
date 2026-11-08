@@ -1,9 +1,13 @@
 # Python
 __pycache__/
 *.pyc
+.pytest_cache/
+.venv/
+venv/
 
 # Dataset lớn
-dataset/audio/
+dataset/audio/*
+!dataset/audio/.gitkeep
 *.mp3
 *.wav
 
