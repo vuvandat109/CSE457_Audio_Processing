@@ -949,8 +949,8 @@ function DetailPanel({ data, onClose, isUpload = false }) {
                     : (
                       <p>
                         {data.prediction ??
-                          data.whisper ??
-                          data.whisper_text ??
+                          
+                          
                           "-"}
                       </p>
                     )}
@@ -1349,18 +1349,8 @@ export default function App() {
 
   const [statistics, setStatistics] = useState(null);
 
-  const [modelComparison, setModelComparison] = useState(null);
-
-  const [activeModel, setActiveModel] = useState("whisper");
-
-  const activeModelName =
-    activeModel === "phowhisper"
-      ? "PhoWhisper base"
-      : activeModel === "wav2vec2"
-        ? "Wav2Vec2 Vietnamese"
-        : "Whisper base";
-
-
+  const activeModel = "wav2vec2";
+  const activeModelName = "Wav2Vec2 tiếng Việt";
 
   const [audioList, setAudioList] = useState([]);
 
@@ -1446,9 +1436,7 @@ export default function App() {
 
 
 
-      axios.get(`${API}/api/audio-list?model=${activeModel}`),
-
-      axios.get(`${API}/api/model-comparison`)
+      axios.get(`${API}/api/audio-list?model=${activeModel}`)
 
 
 
@@ -1456,13 +1444,12 @@ export default function App() {
 
 
 
-      .then(([stat, audio, comparison]) => {
+      .then(([stat, audio]) => {
 
 
 
         setStatistics(stat.data);
 
-        setModelComparison(comparison.data);
 
 
 
@@ -1510,7 +1497,7 @@ export default function App() {
 
 
 
-  }, [activeModel]);
+  }, []);
 
 
 
@@ -1982,31 +1969,7 @@ export default function App() {
 
   }, [statistics]);
 
-  const modelMetricData = useMemo(() => {
-    return (modelComparison?.models ?? []).map((model) => ({
-      name: model.name,
-      WER: Number(model.average_wer ?? 0) * 100,
-      CER: Number(model.average_cer ?? 0) * 100,
-      "WER toàn bộ": Number(model.corpus_wer ?? 0) * 100
-    }));
-  }, [modelComparison]);
-
-  const modelSdiData = useMemo(() => {
-    return (modelComparison?.models ?? []).map((model) => ({
-      name: model.name,
-      S: Number(model.substitutions ?? 0),
-      D: Number(model.deletions ?? 0),
-      I: Number(model.insertions ?? 0)
-    }));
-  }, [modelComparison]);
-
-
-
-
-
-
-
-
+  // Chỉ sử dụng Wav2Vec2, không còn bảng so sánh mô hình.
 
   // =====================================================
 
@@ -2260,7 +2223,7 @@ export default function App() {
 
 
 
-              Bảng điều khiển & Đánh giá sai sót mô hình nhận dạng tiếng Việt
+              Thống kê và phân tích lỗi nhận dạng tiếng Việt
 
 
 
@@ -2272,47 +2235,9 @@ export default function App() {
 
 
 
-          <div
-            style={{
-              marginLeft: "auto",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px"
-            }}
-          >
-            <span
-              style={{
-                fontSize: "13px",
-                color: "var(--text-soft)",
-                fontWeight: 600
-              }}
-            >
-              Mô hình:
-            </span>
-
-            <select
-              value={activeModel}
-              onChange={(e) => {
-                setActiveModel(e.target.value);
-                setSelected(null);
-                setCurrentPage(1);
-              }}
-              style={{
-                border: "1px solid var(--line)",
-                background: "var(--surface)",
-                color: "var(--text)",
-                padding: "8px 12px",
-                borderRadius: "var(--radius-sm)",
-                fontFamily: "inherit",
-                fontSize: "13px",
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
-            >
-              <option value="whisper">Whisper base</option>
-              <option value="phowhisper">PhoWhisper base</option>
-              <option value="wav2vec2">Wav2Vec2 Vietnamese</option>
-            </select>
+          <div className="single-model-pill" aria-label="Mô hình nhận dạng">
+            <span className="single-model-pill__dot" />
+            Wav2Vec2 tiếng Việt
           </div>
 
         </header>
@@ -2723,217 +2648,7 @@ export default function App() {
 
 
 
-          {/* MODEL COMPARISON */}
-          <section className="section chart-section">
-            <div className="section-header">
-              <h2>🤖 So sánh mô hình ASR</h2>
-              <span className="badge-count">
-                {modelComparison?.total_models ?? 0} mô hình
-              </span>
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "16px",
-                marginBottom: "18px"
-              }}
-            >
-              {(modelComparison?.models ?? []).map((model) => {
-                const isBest =
-                  modelComparison?.best?.average_wer === model.key &&
-                  modelComparison?.best?.average_cer === model.key &&
-                  modelComparison?.best?.corpus_wer === model.key;
-
-                return (
-                  <div
-                    key={model.key}
-                    className="card"
-                    style={{
-                      padding: "18px",
-                      border: isBest
-                        ? "2px solid var(--success)"
-                        : "1px solid var(--line)"
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        gap: "10px",
-                        alignItems: "center",
-                        marginBottom: "14px"
-                      }}
-                    >
-                      <strong style={{ fontSize: "16px" }}>{model.name}</strong>
-                      {isBest && (
-                        <span className="no-error-badge">🏆 Tốt nhất</span>
-                      )}
-                    </div>
-
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: "10px",
-                        fontSize: "13px"
-                      }}
-                    >
-                      <div>
-                        <span style={{ color: "var(--text-soft)" }}>WER TB</span>
-                        <div style={{ fontWeight: 700, fontSize: "18px" }}>
-                          {percent(model.average_wer)}
-                        </div>
-                      </div>
-
-                      <div>
-                        <span style={{ color: "var(--text-soft)" }}>CER TB</span>
-                        <div style={{ fontWeight: 700, fontSize: "18px" }}>
-                          {percent(model.average_cer)}
-                        </div>
-                      </div>
-
-                      <div>
-                        <span style={{ color: "var(--text-soft)" }}>
-                          WER toàn bộ
-                        </span>
-                        <div style={{ fontWeight: 700, fontSize: "18px" }}>
-                          {percent(model.corpus_wer)}
-                        </div>
-                      </div>
-
-                      <div>
-                        <span style={{ color: "var(--text-soft)" }}>
-                          Hallucination
-                        </span>
-                        <div style={{ fontWeight: 700, fontSize: "18px" }}>
-                          {model.hallucination_count ?? 0}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        marginTop: "14px",
-                        paddingTop: "12px",
-                        borderTop: "1px solid var(--line)",
-                        fontSize: "13px",
-                        color: "var(--text-soft)"
-                      }}
-                    >
-                      S / D / I:{" "}
-                      <strong style={{ color: "var(--text)" }}>
-                        {model.substitutions ?? 0} / {model.deletions ?? 0} /{" "}
-                        {model.insertions ?? 0}
-                      </strong>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
-                gap: "18px"
-              }}
-            >
-              <div className="chart-box">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={modelMetricData}
-                    margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
-                  >
-                    <XAxis
-                      dataKey="name"
-                      tick={{ fill: "#64748b", fontSize: 12 }}
-                    />
-                    <YAxis
-                      tick={{ fill: "#64748b", fontSize: 12 }}
-                      tickFormatter={(value) => `${value}%`}
-                    />
-                    <Tooltip
-                      formatter={(value) => `${Number(value).toFixed(2)}%`}
-                      contentStyle={{
-                        background: "#ffffff",
-                        borderRadius: "8px",
-                        boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-                        border: "1px solid #e2e8f0"
-                      }}
-                    />
-                    <Bar dataKey="WER" fill={CHART_COLORS[0]} radius={[5, 5, 0, 0]} />
-                    <Bar dataKey="CER" fill={CHART_COLORS[1]} radius={[5, 5, 0, 0]} />
-                    <Bar
-                      dataKey="WER toàn bộ"
-                      fill={CHART_COLORS[2]}
-                      radius={[5, 5, 0, 0]}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-
-              <div className="chart-box">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={modelSdiData}
-                    margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
-                  >
-                    <XAxis
-                      dataKey="name"
-                      tick={{ fill: "#64748b", fontSize: 12 }}
-                    />
-                    <YAxis tick={{ fill: "#64748b", fontSize: 12 }} />
-                    <Tooltip
-                      contentStyle={{
-                        background: "#ffffff",
-                        borderRadius: "8px",
-                        boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-                        border: "1px solid #e2e8f0"
-                      }}
-                    />
-                    <Bar dataKey="S" fill={CHART_COLORS[3]} radius={[5, 5, 0, 0]} />
-                    <Bar dataKey="D" fill={CHART_COLORS[4]} radius={[5, 5, 0, 0]} />
-                    <Bar dataKey="I" fill={CHART_COLORS[5]} radius={[5, 5, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            <div style={{ overflowX: "auto", marginTop: "18px" }}>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Mô hình</th>
-                    <th>WER TB</th>
-                    <th>CER TB</th>
-                    <th>WER toàn bộ</th>
-                    <th>S</th>
-                    <th>D</th>
-                    <th>I</th>
-                    <th>Nhận dạng bất thường</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(modelComparison?.models ?? []).map((model) => (
-                    <tr key={`compare-${model.key}`}>
-                      <td><strong>{model.name}</strong></td>
-                      <td>{percent(model.average_wer)}</td>
-                      <td>{percent(model.average_cer)}</td>
-                      <td>{percent(model.corpus_wer)}</td>
-                      <td>{model.substitutions ?? 0}</td>
-                      <td>{model.deletions ?? 0}</td>
-                      <td>{model.insertions ?? 0}</td>
-                      <td>{model.hallucination_count ?? 0}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-
+          {/* Thống kê lỗi và kết quả Wav2Vec2 nằm trong bảng điều khiển phía trên. */}
 
           {/* LIVE AUDIO TEST */}
           <section className="section">
@@ -3077,49 +2792,13 @@ export default function App() {
                 </div>
 
                 <div>
-                  <div
-                    style={{
-                      fontSize: "13px",
-                      fontWeight: 700,
-                      marginBottom: "7px"
-                    }}
-                  >
-                    Model nhận dạng
+                  <div className="model-info">
+                    <span className="model-info__label">Mô hình nhận dạng</span>
+                    <strong>Wav2Vec2 tiếng Việt</strong>
                   </div>
-
-                  <select
-                    value={activeModel}
-                    onChange={(e) => {
-                      setActiveModel(
-                        e.target.value
-                      );
-                      setSelected(null);
-                      setCurrentPage(1);
-                      setTestResult(null);
-                    }}
-                    style={{
-                      width: "100%",
-                      border: "1px solid var(--line)",
-                      background: "var(--surface)",
-                      color: "var(--text)",
-                      padding: "10px 12px",
-                      borderRadius: "10px",
-                      fontFamily: "inherit",
-                      fontSize: "14px",
-                      fontWeight: 600
-                    }}
-                  >
-                    <option value="whisper">
-                      Whisper base
-                    </option>
-                    <option value="phowhisper">
-                      PhoWhisper base
-                    </option>
-                    <option value="wav2vec2">
-                      Wav2Vec2 Vietnamese
-                    </option>
-                  </select>
                 </div>
+              </div>
+
               </div>
 
               <div>
