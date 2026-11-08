@@ -760,3 +760,11 @@ def system_info():
         "loaded_models": loaded_models(),
         "supported_audio": [".wav", ".mp3", ".m4a", ".flac", ".ogg", ".webm", ".aac"],
     }
+
+
+# The production Docker image includes the built React frontend. Serving it from
+# the same origin removes CORS setup and avoids a second Render paid service.
+# On local development, Vite serves the frontend separately as before.
+FRONTEND_DIST = Path(os.getenv("ASR_FRONTEND_DIST", "")).resolve() if os.getenv("ASR_FRONTEND_DIST") else None
+if FRONTEND_DIST and FRONTEND_DIST.is_dir() and (FRONTEND_DIST / "index.html").is_file():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIST, html=True), name="frontend")
