@@ -364,28 +364,28 @@ function renderWordDiff(words, side) {
           return null;
         }
 
-        let background = "rgba(34, 197, 94, 0.12)";
-        let border = "rgba(34, 197, 94, 0.28)";
+        let background = "#d9f3e5";
+        let border = "#55b98a";
         let color = "#15803d";
         let title = "Đúng";
 
         if (isSubstitution) {
-          background = "rgba(245, 158, 11, 0.14)";
-          border = "rgba(245, 158, 11, 0.34)";
+          background = "#ffe5ae";
+          border = "#e49b22";
           color = "#b45309";
           title = "Thay thế";
         }
 
         if (isDeletion && side === "reference") {
-          background = "rgba(239, 68, 68, 0.14)";
-          border = "rgba(239, 68, 68, 0.34)";
+          background = "#ffdce2";
+          border = "#e17f91";
           color = "#b91c1c";
           title = "Mất từ";
         }
 
         if (isInsertion && side === "prediction") {
-          background = "rgba(139, 92, 246, 0.14)";
-          border = "rgba(139, 92, 246, 0.34)";
+          background = "#e6dbff";
+          border = "#a689e7";
           color = "#7c3aed";
           title = "Thêm từ";
         }
@@ -451,8 +451,8 @@ function WordDiffLegend() {
       <span style={itemStyle}>
         <span
           style={dot(
-            "rgba(34, 197, 94, 0.12)",
-            "rgba(34, 197, 94, 0.28)"
+            "#d9f3e5",
+            "#55b98a"
           )}
         />
         Đúng
@@ -461,8 +461,8 @@ function WordDiffLegend() {
       <span style={itemStyle}>
         <span
           style={dot(
-            "rgba(245, 158, 11, 0.14)",
-            "rgba(245, 158, 11, 0.34)"
+            "#ffe5ae",
+            "#e49b22"
           )}
         />
         Thay thế
@@ -471,8 +471,8 @@ function WordDiffLegend() {
       <span style={itemStyle}>
         <span
           style={dot(
-            "rgba(239, 68, 68, 0.14)",
-            "rgba(239, 68, 68, 0.34)"
+            "#ffdce2",
+            "#e17f91"
           )}
         />
         Mất từ
@@ -481,8 +481,8 @@ function WordDiffLegend() {
       <span style={itemStyle}>
         <span
           style={dot(
-            "rgba(139, 92, 246, 0.14)",
-            "rgba(139, 92, 246, 0.34)"
+            "#e6dbff",
+            "#a689e7"
           )}
         />
         Thêm từ
