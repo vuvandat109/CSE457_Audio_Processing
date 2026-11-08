@@ -713,7 +713,7 @@ function DetailPanel({ data, onClose, isUpload = false }) {
 
 
 
-              <dt>WER (Word Error Rate)</dt>
+              <dt>Tỷ lệ lỗi từ WER</dt>
 
 
 
@@ -737,7 +737,7 @@ function DetailPanel({ data, onClose, isUpload = false }) {
 
 
 
-              <dt>CER (Char Error Rate)</dt>
+              <dt>Tỷ lệ lỗi ký tự CER</dt>
 
 
 
@@ -919,7 +919,7 @@ function DetailPanel({ data, onClose, isUpload = false }) {
 
               <div className="sentence sentence--ref">
 
-                <span className="sentence-label">Chuẩn (Ground Truth)</span>
+                <span className="sentence-label">Câu chuẩn</span>
 
                 <div style={{ marginTop: "8px" }}>
                   {words.length > 0
@@ -1987,7 +1987,7 @@ export default function App() {
       name: model.name,
       WER: Number(model.average_wer ?? 0) * 100,
       CER: Number(model.average_cer ?? 0) * 100,
-      "Corpus WER": Number(model.corpus_wer ?? 0) * 100
+      "WER toàn bộ": Number(model.corpus_wer ?? 0) * 100
     }));
   }, [modelComparison]);
 
@@ -2096,7 +2096,7 @@ export default function App() {
 
 
 
-            <strong>ASR</strong> Analyzer
+            <strong>Phân tích</strong> giọng nói
 
 
 
@@ -2140,7 +2140,7 @@ export default function App() {
 
 
 
-            <span>Mẫu cần sửa ({counts.incorrect})</span>
+            <span>Mẫu cần sửa <span className="nav-count">{counts.incorrect}</span></span>
 
 
 
@@ -2156,7 +2156,7 @@ export default function App() {
 
 
 
-            <span>Mẫu đạt chuẩn ({counts.correct})</span>
+            <span>Mẫu đạt chuẩn <span className="nav-count">{counts.correct}</span></span>
 
 
 
@@ -2252,7 +2252,7 @@ export default function App() {
 
 
 
-            <h1>Vietnamese ASR Error Analyzer</h1>
+            <h1>Phân tích lỗi nhận dạng tiếng Việt</h1>
 
 
 
@@ -2383,7 +2383,7 @@ export default function App() {
 
 
 
-              title="Tổng Audio"
+              title="Tổng số mẫu"
 
 
 
@@ -2407,7 +2407,7 @@ export default function App() {
 
 
 
-              title="Tổng lỗi âm"
+              title="Tổng lỗi phát hiện"
 
 
 
@@ -2470,35 +2470,35 @@ export default function App() {
             />
             <StatCard
               icon="05"
-              title="Corpus WER"
+              title="WER toàn bộ"
               value={percent(statistics?.corpus_wer)}
               variant="warning"
             />
 
             <StatCard
               icon="06"
-              title="Thay thế (S)"
+              title="Từ bị thay thế"
               value={statistics?.word_error_counts?.substitutions ?? 0}
               variant="danger"
             />
 
             <StatCard
               icon="07"
-              title="Mất từ (D)"
+              title="Từ bị thiếu"
               value={statistics?.word_error_counts?.deletions ?? 0}
               variant="warning"
             />
 
             <StatCard
               icon="08"
-              title="Thêm từ (I)"
+              title="Từ bị thêm"
               value={statistics?.word_error_counts?.insertions ?? 0}
               variant="info"
             />
 
             <StatCard
               icon="09"
-              title="Hallucination"
+              title="Nhận dạng bất thường"
               value={statistics?.hallucination?.count ?? 0}
               variant="danger"
             />
@@ -2515,7 +2515,7 @@ export default function App() {
 
 
 
-              title="Câu chuẩn xác"
+              title="Câu nhận dạng đúng"
 
 
 
@@ -2796,7 +2796,7 @@ export default function App() {
 
                       <div>
                         <span style={{ color: "var(--text-soft)" }}>
-                          Corpus WER
+                          WER toàn bộ
                         </span>
                         <div style={{ fontWeight: 700, fontSize: "18px" }}>
                           {percent(model.corpus_wer)}
@@ -2866,7 +2866,7 @@ export default function App() {
                     <Bar dataKey="WER" fill={CHART_COLORS[0]} radius={[5, 5, 0, 0]} />
                     <Bar dataKey="CER" fill={CHART_COLORS[1]} radius={[5, 5, 0, 0]} />
                     <Bar
-                      dataKey="Corpus WER"
+                      dataKey="WER toàn bộ"
                       fill={CHART_COLORS[2]}
                       radius={[5, 5, 0, 0]}
                     />
@@ -2908,11 +2908,11 @@ export default function App() {
                     <th>Mô hình</th>
                     <th>WER TB</th>
                     <th>CER TB</th>
-                    <th>Corpus WER</th>
+                    <th>WER toàn bộ</th>
                     <th>S</th>
                     <th>D</th>
                     <th>I</th>
-                    <th>Hallucination</th>
+                    <th>Nhận dạng bất thường</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2938,7 +2938,7 @@ export default function App() {
           {/* LIVE AUDIO TEST */}
           <section className="section">
             <div className="section-header">
-              <h2>🎤 Test audio mới trực tiếp</h2>
+              <h2>Thử nhận dạng âm thanh</h2>
               <span className="badge-count">
                 {activeModelName}
               </span>
@@ -3130,7 +3130,7 @@ export default function App() {
                     marginBottom: "7px"
                   }}
                 >
-                  Ground Truth
+                  Câu chuẩn
                   <span
                     style={{
                       fontWeight: 400,
@@ -3138,7 +3138,7 @@ export default function App() {
                     }}
                   >
                     {" "}
-                    (không bắt buộc)
+                    — không bắt buộc
                   </span>
                 </div>
 
@@ -3191,8 +3191,8 @@ export default function App() {
                   {testLoading
                     ? "⏳ Đang nhận dạng..."
                     : recordedAudioUrl
-                      ? "✨ Nhận dạng bản thu"
-                      : "🎙️ Nhận dạng audio"}
+                      ? "Nhận dạng bản ghi"
+                      : "Nhận dạng âm thanh"}
                 </button>
               </div>
             </form>
@@ -3259,7 +3259,7 @@ export default function App() {
                 {testResult.has_ground_truth && (
                   <div className="sentence sentence--ref">
                     <span className="sentence-label">
-                      Chuẩn (Ground Truth)
+                      Câu chuẩn
                     </span>
 
                     <div style={{ marginTop: "8px" }}>
@@ -3329,7 +3329,7 @@ export default function App() {
                       color: "var(--text-soft)"
                     }}
                   >
-                    Nhập Ground Truth để hệ thống tính WER/CER
+                    Nhập Câu chuẩn để hệ thống tính WER/CER
                     và phân tích lỗi tiếng Việt.
                   </div>
                 )}
@@ -3359,7 +3359,7 @@ export default function App() {
                 fontSize: "13px"
               }}
             >
-              <strong>Mô hình đang xem:</strong>
+              <strong>Mô hình đang chọn:</strong>
               <span className="file-badge">
                 {activeModelName}
               </span>
@@ -3369,7 +3369,7 @@ export default function App() {
 
 
 
-              <h2>📑 Danh sách mẫu Audio kiểm thử</h2>
+              <h2>Danh sách mẫu âm thanh</h2>
 
 
 
@@ -3381,7 +3381,7 @@ export default function App() {
 
 
 
-                placeholder="🔍 Tìm tên file audio..."
+                placeholder="Tìm tên tệp âm thanh..."
 
 
 
@@ -3546,7 +3546,7 @@ export default function App() {
                 <option value="20to50">WER 20% - 50%</option>
 
                 <option value="gt50">WER &gt; 50%</option>
-                <option value="hallucination">⚠ Hallucination</option>
+                <option value="hallucination">Nhận dạng bất thường</option>
 
               </select>
 
