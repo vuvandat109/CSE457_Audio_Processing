@@ -72,3 +72,27 @@ python -m pip install -r requirements-asr.txt
 python code\smoke_test_three_models.py
 ```
 Kết quả thử một file được lưu tại `dataset/smoke_test_three_models.json`. Đây không phải đánh giá toàn bộ 1.000 mẫu. Không đưa kết quả của một câu vào báo cáo như độ chính xác trung bình.
+
+## Đánh giá lại 1.000 audio bằng cả 3 model (không ghi đè CSV cũ)
+
+Chạy trên máy đã kiểm thử thành công 3 mô hình. Từ thư mục `Vietnamese-ASR-Analyzer`:
+```cmd
+python code\evaluate_three_models_1000.py --limit 5
+```
+
+Chương trình sẽ ghi riêng vào `dataset/evaluation_recheck/`, hỗ trợ tiếp tục nếu tắt máy hoặc ngắt giữa chừng. **Để đánh giá đủ 1.000 file, phải dùng thư mục khác so với lần chạy thử 5 file**:
+```cmd
+python code\evaluate_three_models_1000.py --limit 1000 --output-dir dataset/evaluation_full_1000
+```
+
+Nếu chương trình báo lỗi mô hình, sửa nguyên nhân rồi chạy lại với `--retry-failed`; file đã chạy thành công sẽ không cần suy luận lại:
+```cmd
+python code\evaluate_three_models_1000.py --limit 1000 --output-dir dataset/evaluation_full_1000 --retry-failed
+```
+
+Khi cả ba file kết quả đã có **đúng 1.000 bản ghi thành công**, xuất báo cáo + bảng JSON + 2 biểu đồ SVG:
+```cmd
+python code\report_three_models_1000.py --input-dir dataset/evaluation_full_1000
+```
+
+Mở `dataset/evaluation_full_1000/REPORT.md`, `verified_comparison.json`, `chart_mean_wer.svg` và `chart_mean_cer.svg`. Nếu thiếu một bản ghi hoặc có lỗi, chương trình **không cho tạo báo cáo xác minh đầy đủ**. CSV lịch sử cho dashboard được giữ nguyên. Không đưa kết quả chạy thử 5 mẫu vào báo cáo chính thức. Khi chia sẻ, lưu kết quả đầu ra có nguồn gốc, thông tin checkpoint, câu chuẩn và lỗi thay vì chỉ chia sẻ số liệu tổng hợp.
