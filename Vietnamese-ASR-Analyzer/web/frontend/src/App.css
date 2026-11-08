@@ -2235,3 +2235,50 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
     border-radius: 12px;
   }
 }
+
+
+/* Accessible word-difference colors: deliberate contrast and clear borders. */
+.sentence--ref {
+  background: #f6faff;
+  border: 1px solid #c7d9eb;
+  border-left: 4px solid #1269a0;
+}
+.sentence--pred {
+  background: #fffafa;
+  border: 1px solid #ead1d5;
+  border-left: 4px solid #c44950;
+}
+.sentence span[title="Đúng"],
+.sentence span[title="Thay thế"],
+.sentence span[title="Mất từ"],
+.sentence span[title="Thêm từ"] {
+  min-height: 36px !important;
+  padding: 7px 12px !important;
+  border-radius: 8px !important;
+  border-width: 1.5px !important;
+  border-style: solid !important;
+  font-size: 14px !important;
+  font-weight: 750 !important;
+  line-height: 1.4 !important;
+  box-shadow: none !important;
+}
+.sentence span[title="Đúng"] {
+  color: #116443 !important;
+  background: #d9f3e5 !important;
+  border-color: #55b98a !important;
+}
+.sentence span[title="Thay thế"] {
+  color: #854800 !important;
+  background: #ffe5ae !important;
+  border-color: #e49b22 !important;
+}
+.sentence span[title="Mất từ"] {
+  color: #9c2436 !important;
+  background: #ffdce2 !important;
+  border-color: #e17f91 !important;
+}
+.sentence span[title="Thêm từ"] {
+  color: #5130ab !important;
+  background: #e6dbff !important;
+  border-color: #a689e7 !important;
+}
