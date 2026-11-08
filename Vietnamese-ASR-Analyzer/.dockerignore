@@ -1,0 +1,24 @@
+# Build only what the ASR service needs; keep dataset/audio/*.mp3.
+.git
+.github
+**/.DS_Store
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.venv/
+**/venv/
+web/frontend/node_modules/
+web/frontend/dist/
+web/backend/uploads/
+web/backend/*.exe
+.env
+.env.*
+dataset/evaluation_recheck/
+dataset/evaluation_full_1000/
+dataset/smoke_test_three_models.json
+*.log
+*.tmp
+*.zip
+*.pt
+*.pth
+*.safetensors
