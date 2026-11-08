@@ -12,6 +12,7 @@ Model duoc lazy-load: chi load khi nguoi dung thuc su chon model do.
 """
 
 import os
+import gc
 import shutil
 import subprocess
 import tempfile
@@ -53,6 +54,8 @@ if shutil.which("ffmpeg") is None:
 
 _model_cache = {}
 _model_lock = Lock()
+# Keep all models locally, but allow lower-RAM servers to evict older weights.
+_MAX_LOADED_MODELS = max(1, int(os.getenv("ASR_MAX_LOADED_MODELS", "3")))
 
 
 def _device():
@@ -129,6 +132,11 @@ def get_model(model_key: str):
 
         if model_key in _model_cache:
             return _model_cache[model_key]
+
+        while len(_model_cache) >= _MAX_LOADED_MODELS:
+            oldest_key = next(iter(_model_cache))
+            del _model_cache[oldest_key]
+            gc.collect()
 
         print(
             f"[ASR] Loading model: {model_key}"
