@@ -1,0 +1,60 @@
+{
+  "config": {
+    "sr": 16000,
+    "window": 400,
+    "hop": 160,
+    "nfft": 512,
+    "seed": 457,
+    "snrs": [
+      0,
+      5,
+      10
+    ],
+    "betas": [
+      1,
+      1.5,
+      2
+    ],
+    "floors": [
+      0,
+      0.01,
+      0.05
+    ],
+    "beta": 1.5,
+    "floor": 0.01,
+    "n_mel": 40,
+    "n_mfcc": 20,
+    "mixing": {
+      "easy": [
+        [
+          1,
+          0.6
+        ],
+        [
+          0.4,
+          1
+        ]
+      ],
+      "near_singular": [
+        [
+          1,
+          0.97
+        ],
+        [
+          0.98,
+          1
+        ]
+      ]
+    },
+    "mixture_noise_snr": 25
+  },
+  "verification": {
+    "threshold": 0.9187316194227351,
+    "dev_far": 0.3333333333333333,
+    "dev_frr": 0.3333333333333333,
+    "test_far": 0.4166666666666667,
+    "test_frr": 0.16666666666666666,
+    "test_genuine": 12,
+    "test_impostor": 24
+  }
+}
